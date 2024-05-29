@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  productNamespacePrefix: "ReactiveUI"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    permissions:
+      contents: none
+    uses: reactiveui/actions-common/.github/workflows/workflow-common-setup-and-build.yml@main
+    with:
+      configuration: Release
+      productNamespacePrefix: "ReactiveUI"
+      dotNetBuild: true
+      useVisualStudioPreview: false
+      useMauiCheckDotNetTool: false
+      solutionFile: "ReactiveUI.Maui.Plugins.Popup.sln"
