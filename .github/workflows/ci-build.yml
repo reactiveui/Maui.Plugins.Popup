@@ -23,4 +23,4 @@ jobs:
       dotNetBuild: true
       useVisualStudioPreview: false
       useMauiCheckDotNetTool: false
-      solutionFile: "reactiveui.sln"
+      solutionFile: "ReactiveUI.Maui.Plugins.Popup.sln"
