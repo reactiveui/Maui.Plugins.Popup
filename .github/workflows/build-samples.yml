@@ -20,8 +20,6 @@ jobs:
     with:
       configuration: Release
       productNamespacePrefix: "ReactiveUI"
-      useVisualStudioPreview: false
-      useMauiCheckDotNetTool: false
       srcFolder: 'integrationtests'
       solutionFile: 'IntegrationTests.All.sln'
       performTests: false

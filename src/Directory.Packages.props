@@ -4,7 +4,7 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="ReactiveUI.Maui" Version="20.1.1" />
+    <PackageVersion Include="ReactiveUI.Maui" Version="20.1.63" />
     <PackageVersion Include="Mopups" Version="1.3.1" />
   </ItemGroup>
   <ItemGroup>
@@ -22,8 +22,8 @@
     <PackageVersion Include="Mocks.Maui" Version="1.1.4" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="Nerdbank.GitVersioning" Version="3.6.133" />
-    <PackageVersion Include="Roslynator.Analyzers" Version="4.12.3" />
+    <PackageVersion Include="Nerdbank.GitVersioning" Version="3.6.143" />
+    <PackageVersion Include="Roslynator.Analyzers" Version="4.12.5" />
     <PackageVersion Include="stylecop.analyzers" Version="1.2.0-beta.556" />
   </ItemGroup>
   <ItemGroup Condition="'$(UseMaui)' == 'true'">
