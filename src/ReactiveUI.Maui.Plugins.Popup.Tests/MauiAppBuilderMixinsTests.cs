@@ -132,6 +132,5 @@ public class MauiAppBuilderMixinsTests
     /// </summary>
     [Test]
     public void MauiAppBuilderMixins_IsInCorrectNamespace() =>
-        // Assert
         typeof(MauiAppBuilderMixins).Namespace.Should().Be("Microsoft.Maui.Hosting");
 }
