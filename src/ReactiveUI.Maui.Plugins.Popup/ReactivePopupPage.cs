@@ -11,7 +11,7 @@ using Mopups.Pages;
 namespace ReactiveUI.Maui.Plugins.Popup;
 
 /// <summary>
-/// Base Popup page for that implements <see cref="IViewFor"/>.
+/// Base Popup page that implements <see cref="IViewFor"/>.
 /// </summary>
 /// <remarks>
 /// This class serves as the bridge between Mopups' <see cref="PopupPage"/> and ReactiveUI's ViewModel binding infrastructure.
@@ -55,6 +55,7 @@ public abstract class ReactivePopupPage : PopupPage, IViewFor
     /// Hot Observables produce values regardless of subscriptions, though in this case the underlying event
     /// requires the page to be active. This allows for declarative subscription to background tap gestures,
     /// commonly used to dismiss the popup when the user clicks outside the content area.
+    /// The setter is protected to allow derived classes to customize the observable behavior if needed.
     /// </remarks>
     public IObservable<Unit> BackgroundClick { get; protected set; }
 

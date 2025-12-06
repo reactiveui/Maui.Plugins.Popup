@@ -6,7 +6,7 @@
 namespace ReactiveUI.Maui.Plugins.Popup;
 
 /// <summary>
-/// Base Popup page for that implements <see cref="IViewFor{TViewModel}"/>.
+/// Base Popup page that implements <see cref="IViewFor{TViewModel}"/>.
 /// </summary>
 /// <typeparam name="TViewModel">The type of the ViewModel that this page will bind to. Must be a reference type.</typeparam>
 /// <remarks>

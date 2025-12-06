@@ -26,6 +26,11 @@ public static class INavigationMixins
     /// This method returns a Cold Observable created from an async operation. The popup dismissal operation
     /// does not begin until the observable is subscribed to. Each subscription triggers a new execution
     /// of the async operation. The observable completes after emitting a single value.
+    /// <para>
+    /// This method removes all popup pages from the popup navigation stack in a single operation. The popup stack
+    /// operates independently from the main MAUI navigation stack, allowing popups to be displayed and dismissed
+    /// without affecting the underlying page hierarchy. All popups are removed in reverse order (last-in, first-out).
+    /// </para>
     /// </remarks>
     public static IObservable<Unit> PopAllPopup(this INavigation navigation, bool animate = true) =>
                Observable.FromAsync(async _ => await MopupService.Instance.PopAllAsync(animate).ConfigureAwait(false));
@@ -40,6 +45,11 @@ public static class INavigationMixins
     /// This method returns a Cold Observable created from an async operation. The popup dismissal operation
     /// does not begin until the observable is subscribed to. Each subscription triggers a new execution
     /// of the async operation. The observable completes after emitting a single value.
+    /// <para>
+    /// This method removes only the topmost popup from the popup navigation stack using a last-in, first-out (LIFO) approach.
+    /// The popup stack is separate from the main MAUI navigation stack, allowing overlay content to be managed
+    /// independently. If no popups are present in the stack, the operation completes without error.
+    /// </para>
     /// </remarks>
     public static IObservable<Unit> PopPopup(this INavigation navigation, bool animate = true) =>
         Observable.FromAsync(async _ => await MopupService.Instance.PopAsync(animate).ConfigureAwait(false));
@@ -56,6 +66,12 @@ public static class INavigationMixins
     /// This method returns a Cold Observable created from an async operation. The popup presentation operation
     /// does not begin until the observable is subscribed to. Each subscription triggers a new execution
     /// of the async operation. The observable completes after emitting a single value.
+    /// <para>
+    /// This method adds a new popup to the top of the popup navigation stack. The popup stack is maintained
+    /// separately from the main MAUI navigation stack (<see cref="INavigation.NavigationStack"/>), allowing
+    /// popups to be displayed as overlays on top of the current page without navigating away from it.
+    /// Multiple popups can be stacked, and they are managed in a last-in, first-out (LIFO) order.
+    /// </para>
     /// </remarks>
     public static IObservable<Unit> PushPopup<T>(this INavigation navigation, T page, bool animate = true)
         where T : PopupPage => Observable.FromAsync(async _ => await MopupService.Instance.PushAsync(page, animate).ConfigureAwait(false));
@@ -72,6 +88,11 @@ public static class INavigationMixins
     /// This method returns a Cold Observable created from an async operation. The popup removal operation
     /// does not begin until the observable is subscribed to. Each subscription triggers a new execution
     /// of the async operation. The observable completes after emitting a single value.
+    /// <para>
+    /// Unlike <see cref="PopPopup(INavigation, bool)"/>, this method removes a specific popup page from anywhere
+    /// in the popup stack, not just the topmost one. This is useful for dismissing a particular popup when multiple
+    /// popups are displayed, or when you need to remove a popup that is not at the top of the stack.
+    /// </para>
     /// </remarks>
     public static IObservable<Unit> RemovePopupPage<T>(this INavigation navigation, T page, bool animate = true)
         where T : PopupPage => Observable.FromAsync(async _ => await MopupService.Instance.RemovePageAsync(page, animate).ConfigureAwait(false));
