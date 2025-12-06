@@ -191,7 +191,7 @@ public class ReactivePopupPageGenericTests
         {
             Assert.That(TestGenericPopupPage.ViewModelProperty, Is.Not.Null);
             Assert.That(TestGenericPopupPage.ViewModelProperty.PropertyName, Is.EqualTo("ViewModel"));
-            Assert.That(TestGenericPopupPage.ViewModelProperty.ReturnType, Is.EqualTo(typeof(TestViewModel)));
+            Assert.That(TestGenericPopupPage.ViewModelProperty.ReturnType, Is.SameAs(typeof(TestViewModel)));
         }
     }
 

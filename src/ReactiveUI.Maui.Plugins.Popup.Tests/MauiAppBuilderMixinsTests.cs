@@ -59,7 +59,7 @@ public class MauiAppBuilderMixinsTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(methodInfo, Is.Not.Null);
-            Assert.That(methodInfo!.ReturnType, Is.EqualTo(typeof(MauiAppBuilder)));
+            Assert.That(methodInfo!.ReturnType, Is.SameAs(typeof(MauiAppBuilder)));
         }
     }
 
@@ -77,7 +77,7 @@ public class MauiAppBuilderMixinsTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(methodInfo, Is.Not.Null);
-            Assert.That(methodInfo!.ReturnType, Is.EqualTo(typeof(MauiAppBuilder)));
+            Assert.That(methodInfo!.ReturnType, Is.SameAs(typeof(MauiAppBuilder)));
         }
     }
 
@@ -112,7 +112,7 @@ public class MauiAppBuilderMixinsTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(parameters, Has.Length.EqualTo(1));
-            Assert.That(parameters[0].ParameterType, Is.EqualTo(typeof(MauiAppBuilder)));
+            Assert.That(parameters[0].ParameterType, Is.SameAs(typeof(MauiAppBuilder)));
             Assert.That(parameters[0].Name, Is.EqualTo("builder"));
         }
     }
@@ -134,9 +134,9 @@ public class MauiAppBuilderMixinsTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(parameters, Has.Length.EqualTo(2));
-            Assert.That(parameters[0].ParameterType, Is.EqualTo(typeof(MauiAppBuilder)));
+            Assert.That(parameters[0].ParameterType, Is.SameAs(typeof(MauiAppBuilder)));
             Assert.That(parameters[0].Name, Is.EqualTo("builder"));
-            Assert.That(parameters[1].ParameterType, Is.EqualTo(typeof(Action)));
+            Assert.That(parameters[1].ParameterType, Is.SameAs(typeof(Action)));
             Assert.That(parameters[1].Name, Is.EqualTo("backPressHandler"));
         }
     }

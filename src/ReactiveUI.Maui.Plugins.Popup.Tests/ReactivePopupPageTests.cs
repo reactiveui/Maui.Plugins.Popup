@@ -127,7 +127,7 @@ public class ReactivePopupPageTests
     [Test]
     public void OnViewModelChanged_WhenBindableObjectIsNull_ThrowsArgumentNullException()
     {
-        // Arrange & Act & Assert
+        // Act & Assert
         Assert.Throws<ArgumentNullException>(() => TestReactivePopupPage.InvokeOnViewModelChanged(null!, new object(), new object()));
     }
 
