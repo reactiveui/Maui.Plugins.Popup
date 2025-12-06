@@ -5,7 +5,6 @@
 
 using Mopups.Hosting;
 using ReactiveUI;
-using ReactiveUI.Maui.Plugins.Popup;
 using Splat;
 
 namespace Microsoft.Maui.Hosting;
@@ -25,7 +24,7 @@ public static class MauiAppBuilderMixins
     public static MauiAppBuilder ConfigureReactiveUIPopup(this MauiAppBuilder builder)
     {
         builder.ConfigureMopups();
-        var resolver = Locator.CurrentMutable;
+        var resolver = AppLocator.CurrentMutable;
         resolver.InitializeSplat();
         resolver.InitializeReactiveUI(RegistrationNamespace.Maui);
         return builder;
@@ -40,7 +39,7 @@ public static class MauiAppBuilderMixins
     public static MauiAppBuilder ConfigureReactiveUIPopup(this MauiAppBuilder builder, Action? backPressHandler)
     {
         builder.ConfigureMopups(backPressHandler);
-        var resolver = Locator.CurrentMutable;
+        var resolver = AppLocator.CurrentMutable;
         resolver.InitializeSplat();
         resolver.InitializeReactiveUI(RegistrationNamespace.Maui);
         return builder;
