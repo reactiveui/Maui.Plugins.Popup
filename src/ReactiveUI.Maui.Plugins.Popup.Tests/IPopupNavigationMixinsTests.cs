@@ -4,12 +4,11 @@
 // See the LICENSE file in the project root for full license information.
 
 using System.Reactive.Linq;
-using FluentAssertions;
 using Mopups.Events;
 using Mopups.Interfaces;
 using Mopups.Pages;
-using Moq;
 using NUnit.Framework;
+using ReactiveUI.Maui.Plugins.Popup.Tests.Mocks;
 
 namespace ReactiveUI.Maui.Plugins.Popup.Tests;
 
@@ -19,13 +18,13 @@ namespace ReactiveUI.Maui.Plugins.Popup.Tests;
 [TestFixture]
 public class IPopupNavigationMixinsTests
 {
-    private Mock<IPopupNavigation> _mockPopupNavigation = null!;
+    private TestPopupNavigation _popupNavigation = null!;
 
     /// <summary>
     /// Sets up the test fixtures.
     /// </summary>
     [SetUp]
-    public void SetUp() => _mockPopupNavigation = new Mock<IPopupNavigation>();
+    public void SetUp() => _popupNavigation = new TestPopupNavigation();
 
     /// <summary>
     /// Tests that PopAllPopup returns observable that completes.
@@ -33,15 +32,11 @@ public class IPopupNavigationMixinsTests
     [Test]
     public void PopAllPopup_WithDefaultAnimation_ReturnsObservable()
     {
-        // Arrange
-        _mockPopupNavigation.Setup(x => x.PopAllAsync(true))
-            .Returns(Task.CompletedTask);
-
         // Act
-        var result = _mockPopupNavigation.Object.PopAllPopup();
+        var result = _popupNavigation.PopAllPopup();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -54,15 +49,15 @@ public class IPopupNavigationMixinsTests
     [TestCase(false)]
     public async Task PopAllPopup_WithAnimationParameter_CallsServiceWithCorrectParameter(bool animate)
     {
-        // Arrange
-        _mockPopupNavigation.Setup(x => x.PopAllAsync(animate))
-            .Returns(Task.CompletedTask);
-
         // Act
-        await _mockPopupNavigation.Object.PopAllPopup(animate);
+        await _popupNavigation.PopAllPopup(animate);
 
         // Assert
-        _mockPopupNavigation.Verify(x => x.PopAllAsync(animate), Times.Once);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(_popupNavigation.PopAllAsyncCalled, Is.True);
+            Assert.That(_popupNavigation.LastAnimateValue, Is.EqualTo(animate));
+        }
     }
 
     /// <summary>
@@ -71,15 +66,11 @@ public class IPopupNavigationMixinsTests
     [Test]
     public void PopPopup_WithDefaultAnimation_ReturnsObservable()
     {
-        // Arrange
-        _mockPopupNavigation.Setup(x => x.PopAsync(true))
-            .Returns(Task.CompletedTask);
-
         // Act
-        var result = _mockPopupNavigation.Object.PopPopup();
+        var result = _popupNavigation.PopPopup();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -92,15 +83,15 @@ public class IPopupNavigationMixinsTests
     [TestCase(false)]
     public async Task PopPopup_WithAnimationParameter_CallsServiceWithCorrectParameter(bool animate)
     {
-        // Arrange
-        _mockPopupNavigation.Setup(x => x.PopAsync(animate))
-            .Returns(Task.CompletedTask);
-
         // Act
-        await _mockPopupNavigation.Object.PopPopup(animate);
+        await _popupNavigation.PopPopup(animate);
 
         // Assert
-        _mockPopupNavigation.Verify(x => x.PopAsync(animate), Times.Once);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(_popupNavigation.PopAsyncCalled, Is.True);
+            Assert.That(_popupNavigation.LastAnimateValue, Is.EqualTo(animate));
+        }
     }
 
     /// <summary>
@@ -110,15 +101,13 @@ public class IPopupNavigationMixinsTests
     public void PushPopup_WithPage_ReturnsObservable()
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
-        _mockPopupNavigation.Setup(x => x.PushAsync(page, true))
-            .Returns(Task.CompletedTask);
+        var page = new PopupPage();
 
         // Act
-        var result = _mockPopupNavigation.Object.PushPopup(page);
+        var result = _popupNavigation.PushPopup(page);
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -132,15 +121,18 @@ public class IPopupNavigationMixinsTests
     public async Task PushPopup_WithAnimationParameter_CallsServiceWithCorrectParameter(bool animate)
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
-        _mockPopupNavigation.Setup(x => x.PushAsync(page, animate))
-            .Returns(Task.CompletedTask);
+        var page = new PopupPage();
 
         // Act
-        await _mockPopupNavigation.Object.PushPopup(page, animate);
+        await _popupNavigation.PushPopup(page, animate);
 
         // Assert
-        _mockPopupNavigation.Verify(x => x.PushAsync(page, animate), Times.Once);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(_popupNavigation.PushAsyncCalled, Is.True);
+            Assert.That(_popupNavigation.LastAnimateValue, Is.EqualTo(animate));
+            Assert.That(_popupNavigation.LastPage, Is.EqualTo(page));
+        }
     }
 
     /// <summary>
@@ -150,15 +142,13 @@ public class IPopupNavigationMixinsTests
     public void RemovePopupPage_WithPage_ReturnsObservable()
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
-        _mockPopupNavigation.Setup(x => x.RemovePageAsync(page, true))
-            .Returns(Task.CompletedTask);
+        var page = new PopupPage();
 
         // Act
-        var result = _mockPopupNavigation.Object.RemovePopupPage(page);
+        var result = _popupNavigation.RemovePopupPage(page);
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -172,15 +162,18 @@ public class IPopupNavigationMixinsTests
     public async Task RemovePopupPage_WithAnimationParameter_CallsServiceWithCorrectParameter(bool animate)
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
-        _mockPopupNavigation.Setup(x => x.RemovePageAsync(page, animate))
-            .Returns(Task.CompletedTask);
+        var page = new PopupPage();
 
         // Act
-        await _mockPopupNavigation.Object.RemovePopupPage(page, animate);
+        await _popupNavigation.RemovePopupPage(page, animate);
 
         // Assert
-        _mockPopupNavigation.Verify(x => x.RemovePageAsync(page, animate), Times.Once);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(_popupNavigation.RemovePageAsyncCalled, Is.True);
+            Assert.That(_popupNavigation.LastAnimateValue, Is.EqualTo(animate));
+            Assert.That(_popupNavigation.LastPage, Is.EqualTo(page));
+        }
     }
 
     /// <summary>
@@ -190,10 +183,10 @@ public class IPopupNavigationMixinsTests
     public void PoppingObservable_ReturnsObservable()
     {
         // Act
-        var result = _mockPopupNavigation.Object.PoppingObservable();
+        var result = _popupNavigation.PoppingObservable();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -203,19 +196,22 @@ public class IPopupNavigationMixinsTests
     public void PoppingObservable_WhenEventRaised_EmitsEventArgs()
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
+        var page = new PopupPage();
         var eventArgs = new PopupNavigationEventArgs(page, true);
         PopupNavigationEventArgs? receivedArgs = null;
 
-        var observable = _mockPopupNavigation.Object.PoppingObservable();
+        var observable = _popupNavigation.PoppingObservable();
         using var subscription = observable.Subscribe(args => receivedArgs = args);
 
         // Act
-        _mockPopupNavigation.Raise(x => x.Popping += null!, this, eventArgs);
+        _popupNavigation.RaisePopping(eventArgs);
 
         // Assert
-        receivedArgs.Should().NotBeNull();
-        receivedArgs.Should().Be(eventArgs);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(receivedArgs, Is.Not.Null);
+            Assert.That(receivedArgs, Is.EqualTo(eventArgs));
+        }
     }
 
     /// <summary>
@@ -225,10 +221,10 @@ public class IPopupNavigationMixinsTests
     public void PoppedObservable_ReturnsObservable()
     {
         // Act
-        var result = _mockPopupNavigation.Object.PoppedObservable();
+        var result = _popupNavigation.PoppedObservable();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -238,19 +234,19 @@ public class IPopupNavigationMixinsTests
     public void PoppedObservable_WhenEventRaised_EmitsEventArgs()
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
+        var page = new PopupPage();
         var eventArgs = new PopupNavigationEventArgs(page, false);
         PopupNavigationEventArgs? receivedArgs = null;
 
-        var observable = _mockPopupNavigation.Object.PoppedObservable();
+        var observable = _popupNavigation.PoppedObservable();
         using var subscription = observable.Subscribe(args => receivedArgs = args);
 
         // Act
-        _mockPopupNavigation.Raise(x => x.Popped += null!, this, eventArgs);
+        _popupNavigation.RaisePopped(eventArgs);
 
         // Assert
-        receivedArgs.Should().NotBeNull();
-        receivedArgs.Should().Be(eventArgs);
+        Assert.That(receivedArgs, Is.Not.Null);
+        Assert.That(receivedArgs, Is.EqualTo(eventArgs));
     }
 
     /// <summary>
@@ -260,10 +256,10 @@ public class IPopupNavigationMixinsTests
     public void PushingObservable_ReturnsObservable()
     {
         // Act
-        var result = _mockPopupNavigation.Object.PushingObservable();
+        var result = _popupNavigation.PushingObservable();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -273,19 +269,19 @@ public class IPopupNavigationMixinsTests
     public void PushingObservable_WhenEventRaised_EmitsEventArgs()
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
+        var page = new PopupPage();
         var eventArgs = new PopupNavigationEventArgs(page, true);
         PopupNavigationEventArgs? receivedArgs = null;
 
-        var observable = _mockPopupNavigation.Object.PushingObservable();
+        var observable = _popupNavigation.PushingObservable();
         using var subscription = observable.Subscribe(args => receivedArgs = args);
 
         // Act
-        _mockPopupNavigation.Raise(x => x.Pushing += null!, this, eventArgs);
+        _popupNavigation.RaisePushing(eventArgs);
 
         // Assert
-        receivedArgs.Should().NotBeNull();
-        receivedArgs.Should().Be(eventArgs);
+        Assert.That(receivedArgs, Is.Not.Null);
+        Assert.That(receivedArgs, Is.EqualTo(eventArgs));
     }
 
     /// <summary>
@@ -295,10 +291,10 @@ public class IPopupNavigationMixinsTests
     public void PushedObservable_ReturnsObservable()
     {
         // Act
-        var result = _mockPopupNavigation.Object.PushedObservable();
+        var result = _popupNavigation.PushedObservable();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -308,19 +304,19 @@ public class IPopupNavigationMixinsTests
     public void PushedObservable_WhenEventRaised_EmitsEventArgs()
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
+        var page = new PopupPage();
         var eventArgs = new PopupNavigationEventArgs(page, false);
         PopupNavigationEventArgs? receivedArgs = null;
 
-        var observable = _mockPopupNavigation.Object.PushedObservable();
+        var observable = _popupNavigation.PushedObservable();
         using var subscription = observable.Subscribe(args => receivedArgs = args);
 
         // Act
-        _mockPopupNavigation.Raise(x => x.Pushed += null!, this, eventArgs);
+        _popupNavigation.RaisePushed(eventArgs);
 
         // Assert
-        receivedArgs.Should().NotBeNull();
-        receivedArgs.Should().Be(eventArgs);
+        Assert.That(receivedArgs, Is.Not.Null);
+        Assert.That(receivedArgs, Is.EqualTo(eventArgs));
     }
 
     /// <summary>
@@ -330,22 +326,22 @@ public class IPopupNavigationMixinsTests
     public void PoppingObservable_WhenDisposed_DoesNotReceiveEvents()
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
+        var page = new PopupPage();
         var eventArgs = new PopupNavigationEventArgs(page, true);
         var receivedCount = 0;
 
-        var observable = _mockPopupNavigation.Object.PoppingObservable();
+        var observable = _popupNavigation.PoppingObservable();
         var subscription = observable.Subscribe(_ => receivedCount++);
 
         // Act - First event should be received
-        _mockPopupNavigation.Raise(x => x.Popping += null!, this, eventArgs);
+        _popupNavigation.RaisePopping(eventArgs);
         subscription.Dispose();
 
         // Second event should not be received
-        _mockPopupNavigation.Raise(x => x.Popping += null!, this, eventArgs);
+        _popupNavigation.RaisePopping(eventArgs);
 
         // Assert
-        receivedCount.Should().Be(1);
+        Assert.That(receivedCount, Is.EqualTo(1));
     }
 
     /// <summary>
@@ -355,20 +351,20 @@ public class IPopupNavigationMixinsTests
     public void PoppedObservable_WhenDisposed_DoesNotReceiveEvents()
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
+        var page = new PopupPage();
         var eventArgs = new PopupNavigationEventArgs(page, true);
         var receivedCount = 0;
 
-        var observable = _mockPopupNavigation.Object.PoppedObservable();
+        var observable = _popupNavigation.PoppedObservable();
         var subscription = observable.Subscribe(_ => receivedCount++);
 
         // Act
-        _mockPopupNavigation.Raise(x => x.Popped += null!, this, eventArgs);
+        _popupNavigation.RaisePopped(eventArgs);
         subscription.Dispose();
-        _mockPopupNavigation.Raise(x => x.Popped += null!, this, eventArgs);
+        _popupNavigation.RaisePopped(eventArgs);
 
         // Assert
-        receivedCount.Should().Be(1);
+        Assert.That(receivedCount, Is.EqualTo(1));
     }
 
     /// <summary>
@@ -378,20 +374,20 @@ public class IPopupNavigationMixinsTests
     public void PushingObservable_WhenDisposed_DoesNotReceiveEvents()
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
+        var page = new PopupPage();
         var eventArgs = new PopupNavigationEventArgs(page, true);
         var receivedCount = 0;
 
-        var observable = _mockPopupNavigation.Object.PushingObservable();
+        var observable = _popupNavigation.PushingObservable();
         var subscription = observable.Subscribe(_ => receivedCount++);
 
         // Act
-        _mockPopupNavigation.Raise(x => x.Pushing += null!, this, eventArgs);
+        _popupNavigation.RaisePushing(eventArgs);
         subscription.Dispose();
-        _mockPopupNavigation.Raise(x => x.Pushing += null!, this, eventArgs);
+        _popupNavigation.RaisePushing(eventArgs);
 
         // Assert
-        receivedCount.Should().Be(1);
+        Assert.That(receivedCount, Is.EqualTo(1));
     }
 
     /// <summary>
@@ -401,19 +397,19 @@ public class IPopupNavigationMixinsTests
     public void PushedObservable_WhenDisposed_DoesNotReceiveEvents()
     {
         // Arrange
-        var page = new Mock<PopupPage>().Object;
+        var page = new PopupPage();
         var eventArgs = new PopupNavigationEventArgs(page, true);
         var receivedCount = 0;
 
-        var observable = _mockPopupNavigation.Object.PushedObservable();
+        var observable = _popupNavigation.PushedObservable();
         var subscription = observable.Subscribe(_ => receivedCount++);
 
         // Act
-        _mockPopupNavigation.Raise(x => x.Pushed += null!, this, eventArgs);
+        _popupNavigation.RaisePushed(eventArgs);
         subscription.Dispose();
-        _mockPopupNavigation.Raise(x => x.Pushed += null!, this, eventArgs);
+        _popupNavigation.RaisePushed(eventArgs);
 
         // Assert
-        receivedCount.Should().Be(1);
+        Assert.That(receivedCount, Is.EqualTo(1));
     }
 }

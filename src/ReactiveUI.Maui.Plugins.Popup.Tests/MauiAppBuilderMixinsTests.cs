@@ -3,7 +3,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using FluentAssertions;
 using NUnit.Framework;
 
 namespace ReactiveUI.Maui.Plugins.Popup.Tests;
@@ -29,7 +28,7 @@ public class MauiAppBuilderMixinsTests
             "ConfigureReactiveUIPopup",
             new[] { typeof(MauiAppBuilder) });
 
-        methodInfo.Should().NotBeNull();
+        Assert.That(methodInfo, Is.Not.Null);
     }
 
     /// <summary>
@@ -43,7 +42,7 @@ public class MauiAppBuilderMixinsTests
             "ConfigureReactiveUIPopup",
             new[] { typeof(MauiAppBuilder), typeof(Action) });
 
-        methodInfo.Should().NotBeNull();
+        Assert.That(methodInfo, Is.Not.Null);
     }
 
     /// <summary>
@@ -57,8 +56,11 @@ public class MauiAppBuilderMixinsTests
             "ConfigureReactiveUIPopup",
             new[] { typeof(MauiAppBuilder) });
 
-        methodInfo.Should().NotBeNull();
-        methodInfo!.ReturnType.Should().Be(typeof(MauiAppBuilder));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(methodInfo, Is.Not.Null);
+            Assert.That(methodInfo!.ReturnType, Is.EqualTo(typeof(MauiAppBuilder)));
+        }
     }
 
     /// <summary>
@@ -72,8 +74,11 @@ public class MauiAppBuilderMixinsTests
             "ConfigureReactiveUIPopup",
             new[] { typeof(MauiAppBuilder), typeof(Action) });
 
-        methodInfo.Should().NotBeNull();
-        methodInfo!.ReturnType.Should().Be(typeof(MauiAppBuilder));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(methodInfo, Is.Not.Null);
+            Assert.That(methodInfo!.ReturnType, Is.EqualTo(typeof(MauiAppBuilder)));
+        }
     }
 
     /// <summary>
@@ -83,8 +88,11 @@ public class MauiAppBuilderMixinsTests
     public void MauiAppBuilderMixins_IsStaticClass()
     {
         // Assert
-        typeof(MauiAppBuilderMixins).IsAbstract.Should().BeTrue();
-        typeof(MauiAppBuilderMixins).IsSealed.Should().BeTrue();
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(typeof(MauiAppBuilderMixins).IsAbstract, Is.True);
+            Assert.That(typeof(MauiAppBuilderMixins).IsSealed, Is.True);
+        }
     }
 
     /// <summary>
@@ -99,11 +107,14 @@ public class MauiAppBuilderMixinsTests
             new[] { typeof(MauiAppBuilder) });
 
         // Assert
-        methodInfo.Should().NotBeNull();
+        Assert.That(methodInfo, Is.Not.Null);
         var parameters = methodInfo!.GetParameters();
-        parameters.Should().HaveCount(1);
-        parameters[0].ParameterType.Should().Be(typeof(MauiAppBuilder));
-        parameters[0].Name.Should().Be("builder");
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(parameters, Has.Length.EqualTo(1));
+            Assert.That(parameters[0].ParameterType, Is.EqualTo(typeof(MauiAppBuilder)));
+            Assert.That(parameters[0].Name, Is.EqualTo("builder"));
+        }
     }
 
     /// <summary>
@@ -118,13 +129,16 @@ public class MauiAppBuilderMixinsTests
             new[] { typeof(MauiAppBuilder), typeof(Action) });
 
         // Assert
-        methodInfo.Should().NotBeNull();
+        Assert.That(methodInfo, Is.Not.Null);
         var parameters = methodInfo!.GetParameters();
-        parameters.Should().HaveCount(2);
-        parameters[0].ParameterType.Should().Be(typeof(MauiAppBuilder));
-        parameters[0].Name.Should().Be("builder");
-        parameters[1].ParameterType.Should().Be(typeof(Action));
-        parameters[1].Name.Should().Be("backPressHandler");
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(parameters, Has.Length.EqualTo(2));
+            Assert.That(parameters[0].ParameterType, Is.EqualTo(typeof(MauiAppBuilder)));
+            Assert.That(parameters[0].Name, Is.EqualTo("builder"));
+            Assert.That(parameters[1].ParameterType, Is.EqualTo(typeof(Action)));
+            Assert.That(parameters[1].Name, Is.EqualTo("backPressHandler"));
+        }
     }
 
     /// <summary>
@@ -132,5 +146,5 @@ public class MauiAppBuilderMixinsTests
     /// </summary>
     [Test]
     public void MauiAppBuilderMixins_IsInCorrectNamespace() =>
-        typeof(MauiAppBuilderMixins).Namespace.Should().Be("Microsoft.Maui.Hosting");
+        Assert.That(typeof(MauiAppBuilderMixins).Namespace, Is.EqualTo("Microsoft.Maui.Hosting"));
 }

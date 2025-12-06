@@ -3,7 +3,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using FluentAssertions;
 using NUnit.Framework;
 
 namespace ReactiveUI.Maui.Plugins.Popup.Tests;
@@ -24,7 +23,7 @@ public class ReactivePopupPageGenericTests
         var page = new TestGenericPopupPage();
 
         // Assert
-        page.ViewModel.Should().BeNull();
+        Assert.That(page.ViewModel, Is.Null);
     }
 
     /// <summary>
@@ -41,7 +40,7 @@ public class ReactivePopupPageGenericTests
         page.ViewModel = viewModel;
 
         // Assert
-        page.ViewModel.Should().Be(viewModel);
+        Assert.That(page.ViewModel, Is.EqualTo(viewModel));
     }
 
     /// <summary>
@@ -58,7 +57,7 @@ public class ReactivePopupPageGenericTests
         page.ViewModel = viewModel;
 
         // Assert
-        page.BindingContext.Should().Be(viewModel);
+        Assert.That(page.BindingContext, Is.EqualTo(viewModel));
     }
 
     /// <summary>
@@ -75,7 +74,7 @@ public class ReactivePopupPageGenericTests
         page.BindingContext = viewModel;
 
         // Assert
-        page.ViewModel.Should().Be(viewModel);
+        Assert.That(page.ViewModel, Is.EqualTo(viewModel));
     }
 
     /// <summary>
@@ -93,7 +92,7 @@ public class ReactivePopupPageGenericTests
         page.BindingContext = "wrong type";
 
         // Assert
-        page.ViewModel.Should().BeNull();
+        Assert.That(page.ViewModel, Is.Null);
     }
 
     /// <summary>
@@ -111,7 +110,7 @@ public class ReactivePopupPageGenericTests
         page.ViewModel = null;
 
         // Assert
-        page.ViewModel.Should().BeNull();
+        Assert.That(page.ViewModel, Is.Null);
     }
 
     /// <summary>
@@ -130,8 +129,11 @@ public class ReactivePopupPageGenericTests
         page.ViewModel = viewModel2;
 
         // Assert
-        page.ViewModel.Should().Be(viewModel2);
-        page.BindingContext.Should().Be(viewModel2);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(page.ViewModel, Is.EqualTo(viewModel2));
+            Assert.That(page.BindingContext, Is.EqualTo(viewModel2));
+        }
     }
 
     /// <summary>
@@ -144,7 +146,7 @@ public class ReactivePopupPageGenericTests
         var page = new TestGenericPopupPage();
 
         // Assert
-        page.Should().BeAssignableTo<IViewFor<TestViewModel>>();
+        Assert.That(page, Is.InstanceOf<IViewFor<TestViewModel>>());
     }
 
     /// <summary>
@@ -162,7 +164,7 @@ public class ReactivePopupPageGenericTests
         page.BindingContext = null;
 
         // Assert
-        page.ViewModel.Should().BeNull();
+        Assert.That(page.ViewModel, Is.Null);
     }
 
     /// <summary>
@@ -175,7 +177,7 @@ public class ReactivePopupPageGenericTests
         var page = new TestGenericPopupPage();
 
         // Assert
-        page.BackgroundClick.Should().NotBeNull();
+        Assert.That(page.BackgroundClick, Is.Not.Null);
     }
 
     /// <summary>
@@ -185,9 +187,12 @@ public class ReactivePopupPageGenericTests
     public void ViewModelProperty_IsDefined()
     {
         // Assert
-        TestGenericPopupPage.ViewModelProperty.Should().NotBeNull();
-        TestGenericPopupPage.ViewModelProperty.PropertyName.Should().Be("ViewModel");
-        TestGenericPopupPage.ViewModelProperty.ReturnType.Should().Be<TestViewModel>();
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(TestGenericPopupPage.ViewModelProperty, Is.Not.Null);
+            Assert.That(TestGenericPopupPage.ViewModelProperty.PropertyName, Is.EqualTo("ViewModel"));
+            Assert.That(TestGenericPopupPage.ViewModelProperty.ReturnType, Is.EqualTo(typeof(TestViewModel)));
+        }
     }
 
     /// <summary>
@@ -204,8 +209,11 @@ public class ReactivePopupPageGenericTests
         page.ViewModel = viewModel;
 
         // Assert
-        page.ViewModel.Should().Be(viewModel);
-        page.BindingContext.Should().Be(viewModel);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(page.ViewModel, Is.EqualTo(viewModel));
+            Assert.That(page.BindingContext, Is.EqualTo(viewModel));
+        }
     }
 
     /// <summary>
@@ -222,7 +230,7 @@ public class ReactivePopupPageGenericTests
         page.BindingContext = viewModel;
 
         // Assert
-        page.ViewModel.Should().Be(viewModel);
+        Assert.That(page.ViewModel, Is.EqualTo(viewModel));
     }
 
     /// <summary>
