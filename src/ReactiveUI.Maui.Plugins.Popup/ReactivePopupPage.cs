@@ -13,6 +13,12 @@ namespace ReactiveUI.Maui.Plugins.Popup;
 /// <summary>
 /// Base Popup page for that implements <see cref="IViewFor"/>.
 /// </summary>
+/// <remarks>
+/// This class serves as the bridge between Mopups' <see cref="PopupPage"/> and ReactiveUI's ViewModel binding infrastructure.
+/// It enables declarative, reactive bindings between your popup views and ViewModels, providing automatic synchronization
+/// through the <see cref="IViewFor"/> interface. The class automatically manages the relationship between the
+/// <see cref="ViewModel"/> property and the underlying <see cref="Microsoft.Maui.Controls.BindableObject.BindingContext"/>.
+/// </remarks>
 public abstract class ReactivePopupPage : PopupPage, IViewFor
 {
     /// <summary>
@@ -41,14 +47,26 @@ public abstract class ReactivePopupPage : PopupPage, IViewFor
                 .Select(_ => Unit.Default);
 
     /// <summary>
-    /// Gets or sets the background click observable signal.
+    /// Gets or sets an observable sequence that emits a <see cref="Unit"/> value each time the user taps the background area of the popup.
     /// </summary>
     /// <value>The background click.</value>
+    /// <remarks>
+    /// This is a Hot Observable derived from the <see cref="PopupPage.BackgroundClicked"/> event.
+    /// Hot Observables produce values regardless of subscriptions, though in this case the underlying event
+    /// requires the page to be active. This allows for declarative subscription to background tap gestures,
+    /// commonly used to dismiss the popup when the user clicks outside the content area.
+    /// </remarks>
     public IObservable<Unit> BackgroundClick { get; protected set; }
 
     /// <summary>
     /// Gets or sets the ViewModel to display.
     /// </summary>
+    /// <remarks>
+    /// Setting this property automatically updates the underlying <see cref="Microsoft.Maui.Controls.BindableObject.BindingContext"/>
+    /// of the MAUI page, ensuring that data bindings in XAML and code-behind remain synchronized with the ViewModel.
+    /// This two-way synchronization is maintained through the <see cref="OnViewModelChanged"/> callback and
+    /// <see cref="OnBindingContextChanged"/> override.
+    /// </remarks>
     public object? ViewModel
     {
         get => GetValue(ViewModelProperty);
