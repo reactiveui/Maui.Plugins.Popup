@@ -3,7 +3,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using FluentAssertions;
 using NUnit.Framework;
 
 namespace ReactiveUI.Maui.Plugins.Popup.Tests;
@@ -24,7 +23,7 @@ public class ReactivePopupPageTests
         var page = new TestReactivePopupPage();
 
         // Assert
-        page.ViewModel.Should().BeNull();
+        Assert.That(page.ViewModel, Is.Null);
     }
 
     /// <summary>
@@ -37,7 +36,7 @@ public class ReactivePopupPageTests
         var page = new TestReactivePopupPage();
 
         // Assert
-        page.BackgroundClick.Should().NotBeNull();
+        Assert.That(page.BackgroundClick, Is.Not.Null);
     }
 
     /// <summary>
@@ -50,7 +49,7 @@ public class ReactivePopupPageTests
         var page = new TestReactivePopupPage();
 
         // Assert
-        page.TestControlBindings.Should().NotBeNull();
+        Assert.That(page.TestControlBindings, Is.Not.Null);
     }
 
     /// <summary>
@@ -67,7 +66,7 @@ public class ReactivePopupPageTests
         page.ViewModel = viewModel;
 
         // Assert
-        page.ViewModel.Should().Be(viewModel);
+        Assert.That(page.ViewModel, Is.EqualTo(viewModel));
     }
 
     /// <summary>
@@ -84,7 +83,7 @@ public class ReactivePopupPageTests
         page.ViewModel = viewModel;
 
         // Assert
-        page.BindingContext.Should().Be(viewModel);
+        Assert.That(page.BindingContext, Is.EqualTo(viewModel));
     }
 
     /// <summary>
@@ -101,7 +100,7 @@ public class ReactivePopupPageTests
         page.BindingContext = viewModel;
 
         // Assert
-        page.ViewModel.Should().Be(viewModel);
+        Assert.That(page.ViewModel, Is.EqualTo(viewModel));
     }
 
     /// <summary>
@@ -119,7 +118,7 @@ public class ReactivePopupPageTests
         page.ViewModel = null;
 
         // Assert
-        page.ViewModel.Should().BeNull();
+        Assert.That(page.ViewModel, Is.Null);
     }
 
     /// <summary>
@@ -128,11 +127,8 @@ public class ReactivePopupPageTests
     [Test]
     public void OnViewModelChanged_WhenBindableObjectIsNull_ThrowsArgumentNullException()
     {
-        // Arrange & Act
-        var act = () => TestReactivePopupPage.InvokeOnViewModelChanged(null!, new object(), new object());
-
-        // Assert
-        act.Should().Throw<ArgumentNullException>();
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => TestReactivePopupPage.InvokeOnViewModelChanged(null!, new object(), new object()));
     }
 
     /// <summary>
@@ -149,7 +145,7 @@ public class ReactivePopupPageTests
         TestReactivePopupPage.InvokeOnViewModelChanged(page, null!, newViewModel);
 
         // Assert
-        page.BindingContext.Should().Be(newViewModel);
+        Assert.That(page.BindingContext, Is.EqualTo(newViewModel));
     }
 
     /// <summary>
@@ -168,8 +164,11 @@ public class ReactivePopupPageTests
         page.ViewModel = viewModel2;
 
         // Assert
-        page.ViewModel.Should().Be(viewModel2);
-        page.BindingContext.Should().Be(viewModel2);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(page.ViewModel, Is.EqualTo(viewModel2));
+            Assert.That(page.BindingContext, Is.EqualTo(viewModel2));
+        }
     }
 
     /// <summary>
@@ -188,7 +187,7 @@ public class ReactivePopupPageTests
         page.BindingContext = viewModel;
 
         // Assert
-        page.ViewModel.Should().Be(viewModel);
+        Assert.That(page.ViewModel, Is.EqualTo(viewModel));
     }
 
     /// <summary>

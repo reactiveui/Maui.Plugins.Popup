@@ -3,9 +3,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using FluentAssertions;
-using Moq;
 using NUnit.Framework;
+using ReactiveUI.Maui.Plugins.Popup.Tests.Mocks;
 
 namespace ReactiveUI.Maui.Plugins.Popup.Tests;
 
@@ -19,13 +18,13 @@ namespace ReactiveUI.Maui.Plugins.Popup.Tests;
 [TestFixture]
 public class INavigationMixinsTests
 {
-    private Mock<INavigation> _mockNavigation = null!;
+    private TestNavigation _navigation = null!;
 
     /// <summary>
     /// Sets up the test fixtures.
     /// </summary>
     [SetUp]
-    public void SetUp() => _mockNavigation = new Mock<INavigation>();
+    public void SetUp() => _navigation = new TestNavigation();
 
     /// <summary>
     /// Tests that PopAllPopup returns a non-null observable.
@@ -34,10 +33,10 @@ public class INavigationMixinsTests
     public void PopAllPopup_ReturnsNonNullObservable()
     {
         // Act
-        var result = _mockNavigation.Object.PopAllPopup();
+        var result = _navigation.PopAllPopup();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -47,10 +46,10 @@ public class INavigationMixinsTests
     public void PopAllPopup_WithAnimateFalse_ReturnsNonNullObservable()
     {
         // Act
-        var result = _mockNavigation.Object.PopAllPopup(animate: false);
+        var result = _navigation.PopAllPopup(animate: false);
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -60,10 +59,10 @@ public class INavigationMixinsTests
     public void PopPopup_ReturnsNonNullObservable()
     {
         // Act
-        var result = _mockNavigation.Object.PopPopup();
+        var result = _navigation.PopPopup();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -73,10 +72,10 @@ public class INavigationMixinsTests
     public void PopPopup_WithAnimateFalse_ReturnsNonNullObservable()
     {
         // Act
-        var result = _mockNavigation.Object.PopPopup(animate: false);
+        var result = _navigation.PopPopup(animate: false);
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -89,10 +88,10 @@ public class INavigationMixinsTests
         var page = new Mopups.Pages.PopupPage();
 
         // Act
-        var result = _mockNavigation.Object.PushPopup(page);
+        var result = _navigation.PushPopup(page);
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -105,10 +104,10 @@ public class INavigationMixinsTests
         var page = new Mopups.Pages.PopupPage();
 
         // Act
-        var result = _mockNavigation.Object.PushPopup(page, animate: false);
+        var result = _navigation.PushPopup(page, animate: false);
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -121,10 +120,10 @@ public class INavigationMixinsTests
         var page = new Mopups.Pages.PopupPage();
 
         // Act
-        var result = _mockNavigation.Object.RemovePopupPage(page);
+        var result = _navigation.RemovePopupPage(page);
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -137,10 +136,10 @@ public class INavigationMixinsTests
         var page = new Mopups.Pages.PopupPage();
 
         // Act
-        var result = _mockNavigation.Object.RemovePopupPage(page, animate: false);
+        var result = _navigation.RemovePopupPage(page, animate: false);
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -150,10 +149,10 @@ public class INavigationMixinsTests
     public void PoppingObservable_ReturnsNonNullObservable()
     {
         // Act
-        var result = _mockNavigation.Object.PoppingObservable();
+        var result = _navigation.PoppingObservable();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -163,10 +162,10 @@ public class INavigationMixinsTests
     public void PoppedObservable_ReturnsNonNullObservable()
     {
         // Act
-        var result = _mockNavigation.Object.PoppedObservable();
+        var result = _navigation.PoppedObservable();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -176,10 +175,10 @@ public class INavigationMixinsTests
     public void PushingObservable_ReturnsNonNullObservable()
     {
         // Act
-        var result = _mockNavigation.Object.PushingObservable();
+        var result = _navigation.PushingObservable();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -189,10 +188,10 @@ public class INavigationMixinsTests
     public void PushedObservable_ReturnsNonNullObservable()
     {
         // Act
-        var result = _mockNavigation.Object.PushedObservable();
+        var result = _navigation.PushedObservable();
 
         // Assert
-        result.Should().NotBeNull();
+        Assert.That(result, Is.Not.Null);
     }
 
     /// <summary>
@@ -202,13 +201,16 @@ public class INavigationMixinsTests
     public void PoppingObservable_MultipleSubscriptions_AreIndependent()
     {
         // Act
-        var observable1 = _mockNavigation.Object.PoppingObservable();
-        var observable2 = _mockNavigation.Object.PoppingObservable();
+        var observable1 = _navigation.PoppingObservable();
+        var observable2 = _navigation.PoppingObservable();
 
         // Assert
-        observable1.Should().NotBeNull();
-        observable2.Should().NotBeNull();
-        observable1.Should().NotBeSameAs(observable2);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(observable1, Is.Not.Null);
+            Assert.That(observable2, Is.Not.Null);
+            Assert.That(observable1, Is.Not.SameAs(observable2));
+        }
     }
 
     /// <summary>
@@ -218,13 +220,16 @@ public class INavigationMixinsTests
     public void PoppedObservable_MultipleSubscriptions_AreIndependent()
     {
         // Act
-        var observable1 = _mockNavigation.Object.PoppedObservable();
-        var observable2 = _mockNavigation.Object.PoppedObservable();
+        var observable1 = _navigation.PoppedObservable();
+        var observable2 = _navigation.PoppedObservable();
 
         // Assert
-        observable1.Should().NotBeNull();
-        observable2.Should().NotBeNull();
-        observable1.Should().NotBeSameAs(observable2);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(observable1, Is.Not.Null);
+            Assert.That(observable2, Is.Not.Null);
+            Assert.That(observable1, Is.Not.SameAs(observable2));
+        }
     }
 
     /// <summary>
@@ -234,13 +239,16 @@ public class INavigationMixinsTests
     public void PushingObservable_MultipleSubscriptions_AreIndependent()
     {
         // Act
-        var observable1 = _mockNavigation.Object.PushingObservable();
-        var observable2 = _mockNavigation.Object.PushingObservable();
+        var observable1 = _navigation.PushingObservable();
+        var observable2 = _navigation.PushingObservable();
 
         // Assert
-        observable1.Should().NotBeNull();
-        observable2.Should().NotBeNull();
-        observable1.Should().NotBeSameAs(observable2);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(observable1, Is.Not.Null);
+            Assert.That(observable2, Is.Not.Null);
+            Assert.That(observable1, Is.Not.SameAs(observable2));
+        }
     }
 
     /// <summary>
@@ -250,12 +258,15 @@ public class INavigationMixinsTests
     public void PushedObservable_MultipleSubscriptions_AreIndependent()
     {
         // Act
-        var observable1 = _mockNavigation.Object.PushedObservable();
-        var observable2 = _mockNavigation.Object.PushedObservable();
+        var observable1 = _navigation.PushedObservable();
+        var observable2 = _navigation.PushedObservable();
 
         // Assert
-        observable1.Should().NotBeNull();
-        observable2.Should().NotBeNull();
-        observable1.Should().NotBeSameAs(observable2);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(observable1, Is.Not.Null);
+            Assert.That(observable2, Is.Not.Null);
+            Assert.That(observable1, Is.Not.SameAs(observable2));
+        }
     }
 }
