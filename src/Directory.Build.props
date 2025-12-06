@@ -4,8 +4,8 @@
     <Platform>AnyCPU</Platform>
     <IsTestProject>$(MSBuildProjectName.Contains('Tests'))</IsTestProject>
     <DebugType>embedded</DebugType>
-    <Authors>.NET Foundation and Contributors</Authors>
-    <Copyright>Copyright (c) .NET Foundation and Contributors</Copyright>
+    <Authors>ReactiveUI and Contributors</Authors>
+    <Copyright>Copyright (c) ReactiveUI and Contributors</Copyright>
     <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
