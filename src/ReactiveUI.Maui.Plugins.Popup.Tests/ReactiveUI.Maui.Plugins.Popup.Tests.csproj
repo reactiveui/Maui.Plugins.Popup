@@ -11,5 +11,26 @@
   <ItemGroup>
     <ProjectReference Include="..\ReactiveUI.Maui.Plugins.Popup\ReactiveUI.Maui.Plugins.Popup.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Using Include="TUnit.Core" />
+    <Using Include="TUnit.Core.Executors" />
+    <Using Include="TUnit.Core.Interfaces" />
+    <Using Include="System" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.ComponentModel" />
+    <Using Include="System.Diagnostics.CodeAnalysis" />
+    <Using Include="System.Linq" />
+    <Using Include="System.Linq.Expressions" />
+    <Using Include="System.Reactive" />
+    <Using Include="System.Reactive.Concurrency" />
+    <Using Include="System.Reactive.Disposables" />
+    <Using Include="System.Reactive.Linq" />
+    <Using Include="System.Reactive.Subjects" />
+    <Using Include="System.Reactive.Threading.Tasks" />
+    <Using Include="System.Threading" />
+    <Using Include="System.Threading.Tasks" />
+    <Using Include="Mopups.Events" />
+    <Using Include="Mopups.Interfaces" />
+    <Using Include="Mopups.Pages" />
+  </ItemGroup>
 </Project>

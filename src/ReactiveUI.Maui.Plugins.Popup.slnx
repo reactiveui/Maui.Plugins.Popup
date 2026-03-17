@@ -1,0 +1,17 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/SolutionConfig/">
+    <File Path="../.editorconfig" />
+    <File Path="../README.md" />
+    <File Path="../version.json" />
+    <File Path="Directory.build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="stylecop.json" />
+  </Folder>
+  <Project Path="ReactiveUI.Maui.Plugins.Popup.Tests/ReactiveUI.Maui.Plugins.Popup.Tests.csproj" />
+  <Project Path="ReactiveUI.Maui.Plugins.Popup/ReactiveUI.Maui.Plugins.Popup.csproj" />
+</Solution>
