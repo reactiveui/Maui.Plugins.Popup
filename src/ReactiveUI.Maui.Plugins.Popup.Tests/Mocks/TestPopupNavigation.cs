@@ -3,10 +3,6 @@
 // ReactiveUI licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using Mopups.Events;
-using Mopups.Interfaces;
-using Mopups.Pages;
-
 namespace ReactiveUI.Maui.Plugins.Popup.Tests.Mocks;
 
 /// <summary>

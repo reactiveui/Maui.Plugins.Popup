@@ -41,16 +41,30 @@
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsTestProject)' == 'true'">
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <TUnitImplicitUsings>false</TUnitImplicitUsings>
+    <TUnitAssertionsImplicitUsings>false</TUnitAssertionsImplicitUsings>
+    <NoWarn>$(NoWarn);CS4014;SA1615</NoWarn>
+  </PropertyGroup>
+  
   <ItemGroup Condition="$(IsTestProject)">
-    <PackageReference Include="NUnit" />
-    <PackageReference Include="NUnit3TestAdapter" />
-    <PackageReference Include="NUnit.Analyzers" />
     <PackageReference Include="Mopups" />
     <PackageReference Include="System.Reactive" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="Microsoft.Reactive.Testing" />
     <PackageReference Include="PublicApiGenerator" />
-    <PackageReference Include="coverlet.msbuild" PrivateAssets="All" />
+    <PackageReference Include="TUnit" />
+    <PackageReference Include="TUnit.Core" />
+    <PackageReference Include="Verify.TUnit" />
+    <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" />
+    <PackageReference Include="Microsoft.Testing.Platform.MSBuild" />
+
+    <None Include="$(MSBuildThisFileDirectory)testconfig.json">
+      <Link>$(AssemblyName).testconfig.json</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup Condition="'$(IsTestProject)' != 'true'">
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />

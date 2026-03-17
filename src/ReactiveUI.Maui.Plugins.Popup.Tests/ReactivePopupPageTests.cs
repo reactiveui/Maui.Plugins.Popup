@@ -3,60 +3,57 @@
 // ReactiveUI licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using NUnit.Framework;
-
 namespace ReactiveUI.Maui.Plugins.Popup.Tests;
 
 /// <summary>
 /// Tests for <see cref="ReactivePopupPage"/>.
 /// </summary>
-[TestFixture]
 public class ReactivePopupPageTests
 {
     /// <summary>
     /// Tests that a new instance has null ViewModel.
     /// </summary>
     [Test]
-    public void Constructor_WhenCalled_ViewModelIsNull()
+    public async Task Constructor_WhenCalled_ViewModelIsNull()
     {
         // Arrange & Act
         var page = new TestReactivePopupPage();
 
         // Assert
-        Assert.That(page.ViewModel, Is.Null);
+        await Assert.That(page.ViewModel).IsNull();
     }
 
     /// <summary>
     /// Tests that BackgroundClick observable is initialized.
     /// </summary>
     [Test]
-    public void Constructor_WhenCalled_BackgroundClickIsInitialized()
+    public async Task Constructor_WhenCalled_BackgroundClickIsInitialized()
     {
         // Arrange & Act
         var page = new TestReactivePopupPage();
 
         // Assert
-        Assert.That(page.BackgroundClick, Is.Not.Null);
+        await Assert.That(page.BackgroundClick).IsNotNull();
     }
 
     /// <summary>
     /// Tests that ControlBindings is initialized as empty composite disposable.
     /// </summary>
     [Test]
-    public void Constructor_WhenCalled_ControlBindingsIsInitialized()
+    public async Task Constructor_WhenCalled_ControlBindingsIsInitialized()
     {
         // Arrange & Act
         var page = new TestReactivePopupPage();
 
         // Assert
-        Assert.That(page.TestControlBindings, Is.Not.Null);
+        await Assert.That(page.TestControlBindings).IsNotNull();
     }
 
     /// <summary>
     /// Tests that setting ViewModel updates the property.
     /// </summary>
     [Test]
-    public void ViewModel_WhenSet_UpdatesValue()
+    public async Task ViewModel_WhenSet_UpdatesValue()
     {
         // Arrange
         var page = new TestReactivePopupPage();
@@ -66,14 +63,14 @@ public class ReactivePopupPageTests
         page.ViewModel = viewModel;
 
         // Assert
-        Assert.That(page.ViewModel, Is.EqualTo(viewModel));
+        await Assert.That(page.ViewModel).IsEqualTo(viewModel);
     }
 
     /// <summary>
     /// Tests that setting ViewModel also sets BindingContext.
     /// </summary>
     [Test]
-    public void ViewModel_WhenSet_UpdatesBindingContext()
+    public async Task ViewModel_WhenSet_UpdatesBindingContext()
     {
         // Arrange
         var page = new TestReactivePopupPage();
@@ -83,14 +80,14 @@ public class ReactivePopupPageTests
         page.ViewModel = viewModel;
 
         // Assert
-        Assert.That(page.BindingContext, Is.EqualTo(viewModel));
+        await Assert.That(page.BindingContext).IsEqualTo(viewModel);
     }
 
     /// <summary>
     /// Tests that setting BindingContext updates ViewModel.
     /// </summary>
     [Test]
-    public void BindingContext_WhenSet_UpdatesViewModel()
+    public async Task BindingContext_WhenSet_UpdatesViewModel()
     {
         // Arrange
         var page = new TestReactivePopupPage();
@@ -100,14 +97,14 @@ public class ReactivePopupPageTests
         page.BindingContext = viewModel;
 
         // Assert
-        Assert.That(page.ViewModel, Is.EqualTo(viewModel));
+        await Assert.That(page.ViewModel).IsEqualTo(viewModel);
     }
 
     /// <summary>
     /// Tests that setting ViewModel to null clears the value.
     /// </summary>
     [Test]
-    public void ViewModel_WhenSetToNull_ClearsValue()
+    public async Task ViewModel_WhenSetToNull_ClearsValue()
     {
         // Arrange
         var page = new TestReactivePopupPage();
@@ -118,24 +115,24 @@ public class ReactivePopupPageTests
         page.ViewModel = null;
 
         // Assert
-        Assert.That(page.ViewModel, Is.Null);
+        await Assert.That(page.ViewModel).IsNull();
     }
 
     /// <summary>
     /// Tests that OnViewModelChanged throws when bindableObject is null.
     /// </summary>
     [Test]
-    public void OnViewModelChanged_WhenBindableObjectIsNull_ThrowsArgumentNullException()
+    public async Task OnViewModelChanged_WhenBindableObjectIsNull_ThrowsArgumentNullException()
     {
         // Act & Assert
-        Assert.Throws<ArgumentNullException>(() => TestReactivePopupPage.InvokeOnViewModelChanged(null!, new object(), new object()));
+        await Assert.That(() => TestReactivePopupPage.InvokeOnViewModelChanged(null!, new object(), new object())).ThrowsExactly<ArgumentNullException>();
     }
 
     /// <summary>
     /// Tests that OnViewModelChanged sets BindingContext to new value.
     /// </summary>
     [Test]
-    public void OnViewModelChanged_WhenCalled_SetsBindingContextToNewValue()
+    public async Task OnViewModelChanged_WhenCalled_SetsBindingContextToNewValue()
     {
         // Arrange
         var page = new TestReactivePopupPage();
@@ -145,14 +142,14 @@ public class ReactivePopupPageTests
         TestReactivePopupPage.InvokeOnViewModelChanged(page, null!, newViewModel);
 
         // Assert
-        Assert.That(page.BindingContext, Is.EqualTo(newViewModel));
+        await Assert.That(page.BindingContext).IsEqualTo(newViewModel);
     }
 
     /// <summary>
     /// Tests that changing ViewModel from one value to another works correctly.
     /// </summary>
     [Test]
-    public void ViewModel_WhenChangedFromOneToAnother_UpdatesCorrectly()
+    public async Task ViewModel_WhenChangedFromOneToAnother_UpdatesCorrectly()
     {
         // Arrange
         var page = new TestReactivePopupPage();
@@ -164,18 +161,15 @@ public class ReactivePopupPageTests
         page.ViewModel = viewModel2;
 
         // Assert
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(page.ViewModel, Is.EqualTo(viewModel2));
-            Assert.That(page.BindingContext, Is.EqualTo(viewModel2));
-        }
+        await Assert.That(page.ViewModel).IsEqualTo(viewModel2);
+        await Assert.That(page.BindingContext).IsEqualTo(viewModel2);
     }
 
     /// <summary>
     /// Tests that BindingContext change to non-object type sets ViewModel correctly.
     /// </summary>
     [Test]
-    public void BindingContext_WhenSetToString_UpdatesViewModel()
+    public async Task BindingContext_WhenSetToString_UpdatesViewModel()
     {
         // Arrange
         var page = new TestReactivePopupPage();
@@ -187,7 +181,112 @@ public class ReactivePopupPageTests
         page.BindingContext = viewModel;
 
         // Assert
-        Assert.That(page.ViewModel, Is.EqualTo(viewModel));
+        await Assert.That(page.ViewModel).IsEqualTo(viewModel);
+    }
+
+    /// <summary>
+    /// Tests that subscribing to BackgroundClick observable succeeds.
+    /// </summary>
+    [Test]
+    public async Task BackgroundClick_WhenSubscribed_ReceivesBackgroundClickEvent()
+    {
+        // Arrange
+        var page = new TestReactivePopupPage();
+        Unit? receivedValue = null;
+
+        using var subscription = page.BackgroundClick.Subscribe(unit => receivedValue = unit);
+
+        // Act
+        page.SimulateBackgroundClick();
+
+        // Assert
+        await Assert.That(receivedValue).IsNotNull();
+        await Assert.That(receivedValue!.Value).IsEqualTo(Unit.Default);
+    }
+
+    /// <summary>
+    /// Tests that BackgroundClick observable emits Unit.Default on each click.
+    /// </summary>
+    [Test]
+    public async Task BackgroundClick_WhenClickedMultipleTimes_EmitsForEachClick()
+    {
+        // Arrange
+        var page = new TestReactivePopupPage();
+        var receivedCount = 0;
+
+        using var subscription = page.BackgroundClick.Subscribe(_ => receivedCount++);
+
+        // Act
+        page.SimulateBackgroundClick();
+        page.SimulateBackgroundClick();
+        page.SimulateBackgroundClick();
+
+        // Assert
+        await Assert.That(receivedCount).IsEqualTo(3);
+    }
+
+    /// <summary>
+    /// Tests that disposing BackgroundClick subscription stops receiving events.
+    /// </summary>
+    [Test]
+    public async Task BackgroundClick_WhenDisposed_DoesNotReceiveEvents()
+    {
+        // Arrange
+        var page = new TestReactivePopupPage();
+        var receivedCount = 0;
+
+        var subscription = page.BackgroundClick.Subscribe(_ => receivedCount++);
+
+        // Act
+        page.SimulateBackgroundClick();
+        subscription.Dispose();
+        page.SimulateBackgroundClick();
+
+        // Assert
+        await Assert.That(receivedCount).IsEqualTo(1);
+    }
+
+    /// <summary>
+    /// Tests that ViewModelProperty is defined with correct metadata.
+    /// </summary>
+    [Test]
+    public async Task ViewModelProperty_IsDefined()
+    {
+        // Assert
+        await Assert.That(ReactivePopupPage.ViewModelProperty).IsNotNull();
+        await Assert.That(ReactivePopupPage.ViewModelProperty.PropertyName).IsEqualTo("ViewModel");
+        await Assert.That(ReactivePopupPage.ViewModelProperty.ReturnType).IsSameReferenceAs(typeof(object));
+    }
+
+    /// <summary>
+    /// Tests that ControlBindings is initially empty.
+    /// </summary>
+    [Test]
+    public async Task ControlBindings_WhenConstructed_IsEmpty()
+    {
+        // Arrange & Act
+        var page = new TestReactivePopupPage();
+
+        // Assert
+        await Assert.That(page.TestControlBindings.Count).IsEqualTo(0);
+    }
+
+    /// <summary>
+    /// Tests that setting ViewModel to null also clears BindingContext.
+    /// </summary>
+    [Test]
+    public async Task ViewModel_WhenSetToNull_ClearsBindingContext()
+    {
+        // Arrange
+        var page = new TestReactivePopupPage();
+        var viewModel = new TestViewModel();
+        page.ViewModel = viewModel;
+
+        // Act
+        page.ViewModel = null;
+
+        // Assert
+        await Assert.That(page.BindingContext).IsNull();
     }
 
     /// <summary>
@@ -208,6 +307,18 @@ public class ReactivePopupPageTests
         /// <param name="newValue">The new value.</param>
         public static void InvokeOnViewModelChanged(BindableObject bindableObject, object oldValue, object newValue) =>
             OnViewModelChanged(bindableObject, oldValue, newValue);
+
+        /// <summary>
+        /// Simulates a background click by raising the BackgroundClicked event via reflection.
+        /// </summary>
+        public void SimulateBackgroundClick()
+        {
+            var field = typeof(PopupPage).GetField(
+                "BackgroundClicked",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            var handler = (EventHandler?)field?.GetValue(this);
+            handler?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     /// <summary>
