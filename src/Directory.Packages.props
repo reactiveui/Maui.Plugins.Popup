@@ -19,7 +19,7 @@
     <PackageVersion Include="TUnit.Core" Version="1.17.54" />
     <PackageVersion Include="Verify.TUnit" Version="31.13.2" />
     <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.5.2" />
-    <PackageVersion Include="Microsoft.Testing.Platform.MSBuild" Version="2.1.0" />
+    <PackageVersion Include="Microsoft.Testing.Platform.MSBuild" Version="2.2.1" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Nerdbank.GitVersioning" Version="3.9.50" />
