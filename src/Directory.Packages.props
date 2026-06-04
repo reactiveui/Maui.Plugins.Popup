@@ -4,25 +4,25 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="ReactiveUI.Maui" Version="23.2.27" />
+    <PackageVersion Include="ReactiveUI.Maui" Version="23.2.28" />
     <PackageVersion Include="Mopups" Version="1.3.4" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.300" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.6.0" />
     <PackageVersion Include="Microsoft.Reactive.Testing" Version="6.1.0" />
     <PackageVersion Include="System.Reactive" Version="6.1.0" />
     <PackageVersion Include="PublicApiGenerator" Version="11.5.4" />
     <PackageVersion Include="Mocks.Maui" Version="1.2.5" />
 
-    <PackageVersion Include="TUnit" Version="1.17.54" />
-    <PackageVersion Include="TUnit.Core" Version="1.17.54" />
-    <PackageVersion Include="Verify.TUnit" Version="31.13.2" />
+    <PackageVersion Include="TUnit" Version="1.49.0" />
+    <PackageVersion Include="TUnit.Core" Version="1.49.0" />
+    <PackageVersion Include="Verify.TUnit" Version="31.19.0" />
     <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.7.0" />
     <PackageVersion Include="Microsoft.Testing.Platform.MSBuild" Version="2.2.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="Nerdbank.GitVersioning" Version="3.9.50" />
+    <PackageVersion Include="MinVer" Version="7.0.0" />
     <PackageVersion Include="Roslynator.Analyzers" Version="4.15.0" />
     <PackageVersion Include="stylecop.analyzers" Version="1.2.0-beta.556" />
   </ItemGroup>
