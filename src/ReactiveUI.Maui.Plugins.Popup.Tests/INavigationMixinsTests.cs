@@ -27,6 +27,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that PopAllPopup returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PopAllPopup_ReturnsNonNullObservable()
     {
@@ -40,6 +41,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that PopAllPopup with animate false returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PopAllPopup_WithAnimateFalse_ReturnsNonNullObservable()
     {
@@ -53,6 +55,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that PopPopup returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PopPopup_ReturnsNonNullObservable()
     {
@@ -66,6 +69,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that PopPopup with animate false returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PopPopup_WithAnimateFalse_ReturnsNonNullObservable()
     {
@@ -79,6 +83,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that PushPopup returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushPopup_WithPage_ReturnsNonNullObservable()
     {
@@ -95,6 +100,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that PushPopup with animate false returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushPopup_WithAnimateFalse_ReturnsNonNullObservable()
     {
@@ -111,6 +117,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that RemovePopupPage returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task RemovePopupPage_WithPage_ReturnsNonNullObservable()
     {
@@ -127,6 +134,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that RemovePopupPage with animate false returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task RemovePopupPage_WithAnimateFalse_ReturnsNonNullObservable()
     {
@@ -143,6 +151,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that PoppingObservable returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppingObservable_ReturnsNonNullObservable()
     {
@@ -156,6 +165,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that PoppedObservable returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppedObservable_ReturnsNonNullObservable()
     {
@@ -169,6 +179,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that PushingObservable returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushingObservable_ReturnsNonNullObservable()
     {
@@ -182,6 +193,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that PushedObservable returns a non-null observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushedObservable_ReturnsNonNullObservable()
     {
@@ -195,6 +207,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that multiple subscriptions to PoppingObservable are independent.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppingObservable_MultipleSubscriptions_AreIndependent()
     {
@@ -211,6 +224,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that multiple subscriptions to PoppedObservable are independent.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppedObservable_MultipleSubscriptions_AreIndependent()
     {
@@ -227,6 +241,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that multiple subscriptions to PushingObservable are independent.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushingObservable_MultipleSubscriptions_AreIndependent()
     {
@@ -243,6 +258,7 @@ public class INavigationMixinsTests
     /// <summary>
     /// Tests that multiple subscriptions to PushedObservable are independent.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushedObservable_MultipleSubscriptions_AreIndependent()
     {

@@ -44,9 +44,6 @@
 
   <PropertyGroup Condition="'$(IsTestProject)' == 'true'">
     <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
-    <TUnitImplicitUsings>false</TUnitImplicitUsings>
-    <TUnitAssertionsImplicitUsings>false</TUnitAssertionsImplicitUsings>
-    <NoWarn>$(NoWarn);CS4014;SA1615</NoWarn>
   </PropertyGroup>
   
   <ItemGroup Condition="$(IsTestProject)">

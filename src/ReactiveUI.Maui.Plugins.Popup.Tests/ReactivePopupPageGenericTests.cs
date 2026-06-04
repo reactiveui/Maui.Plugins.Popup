@@ -13,6 +13,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that a new instance has null ViewModel.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task Constructor_WhenCalled_ViewModelIsNull()
     {
@@ -26,6 +27,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that setting ViewModel updates the property.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModel_WhenSet_UpdatesValue()
     {
@@ -43,6 +45,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that setting ViewModel also sets BindingContext.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModel_WhenSet_UpdatesBindingContext()
     {
@@ -60,6 +63,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that setting BindingContext with correct type updates ViewModel.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BindingContext_WhenSetWithCorrectType_UpdatesViewModel()
     {
@@ -77,6 +81,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that setting BindingContext with wrong type sets ViewModel to null.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BindingContext_WhenSetWithWrongType_SetsViewModelToNull()
     {
@@ -95,6 +100,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that setting ViewModel to null clears the value.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModel_WhenSetToNull_ClearsValue()
     {
@@ -113,6 +119,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that changing ViewModel from one value to another works correctly.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModel_WhenChangedFromOneToAnother_UpdatesCorrectly()
     {
@@ -133,6 +140,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that page implements IViewFor with correct TViewModel.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task Page_ImplementsIViewFor()
     {
@@ -146,6 +154,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that setting BindingContext to null sets ViewModel to null.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BindingContext_WhenSetToNull_SetsViewModelToNull()
     {
@@ -164,6 +173,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that BackgroundClick observable is available on generic popup page.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BackgroundClick_IsAvailable()
     {
@@ -177,6 +187,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests ViewModelProperty is defined correctly.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModelProperty_IsDefined()
     {
@@ -189,6 +200,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that derived view model type works correctly.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModel_WithDerivedType_WorksCorrectly()
     {
@@ -207,6 +219,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that setting BindingContext to derived type works.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BindingContext_WithDerivedType_SetsViewModel()
     {
@@ -224,6 +237,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that BackgroundClick subscription receives events when background is clicked.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BackgroundClick_WhenSubscribed_ReceivesBackgroundClickEvent()
     {
@@ -244,6 +258,7 @@ public class ReactivePopupPageGenericTests
     /// <summary>
     /// Tests that disposing BackgroundClick subscription stops receiving events.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BackgroundClick_WhenDisposed_DoesNotReceiveEvents()
     {

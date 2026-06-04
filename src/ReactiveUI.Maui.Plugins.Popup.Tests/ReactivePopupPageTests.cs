@@ -13,6 +13,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that a new instance has null ViewModel.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task Constructor_WhenCalled_ViewModelIsNull()
     {
@@ -26,6 +27,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that BackgroundClick observable is initialized.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task Constructor_WhenCalled_BackgroundClickIsInitialized()
     {
@@ -39,6 +41,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that ControlBindings is initialized as empty composite disposable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task Constructor_WhenCalled_ControlBindingsIsInitialized()
     {
@@ -52,6 +55,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that setting ViewModel updates the property.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModel_WhenSet_UpdatesValue()
     {
@@ -69,6 +73,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that setting ViewModel also sets BindingContext.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModel_WhenSet_UpdatesBindingContext()
     {
@@ -86,6 +91,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that setting BindingContext updates ViewModel.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BindingContext_WhenSet_UpdatesViewModel()
     {
@@ -103,6 +109,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that setting ViewModel to null clears the value.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModel_WhenSetToNull_ClearsValue()
     {
@@ -121,6 +128,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that OnViewModelChanged throws when bindableObject is null.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task OnViewModelChanged_WhenBindableObjectIsNull_ThrowsArgumentNullException()
     {
@@ -131,6 +139,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that OnViewModelChanged sets BindingContext to new value.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task OnViewModelChanged_WhenCalled_SetsBindingContextToNewValue()
     {
@@ -148,6 +157,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that changing ViewModel from one value to another works correctly.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModel_WhenChangedFromOneToAnother_UpdatesCorrectly()
     {
@@ -168,6 +178,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that BindingContext change to non-object type sets ViewModel correctly.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BindingContext_WhenSetToString_UpdatesViewModel()
     {
@@ -187,6 +198,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that subscribing to BackgroundClick observable succeeds.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BackgroundClick_WhenSubscribed_ReceivesBackgroundClickEvent()
     {
@@ -207,6 +219,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that BackgroundClick observable emits Unit.Default on each click.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BackgroundClick_WhenClickedMultipleTimes_EmitsForEachClick()
     {
@@ -228,6 +241,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that disposing BackgroundClick subscription stops receiving events.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task BackgroundClick_WhenDisposed_DoesNotReceiveEvents()
     {
@@ -249,6 +263,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that ViewModelProperty is defined with correct metadata.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModelProperty_IsDefined()
     {
@@ -261,6 +276,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that ControlBindings is initially empty.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ControlBindings_WhenConstructed_IsEmpty()
     {
@@ -274,6 +290,7 @@ public class ReactivePopupPageTests
     /// <summary>
     /// Tests that setting ViewModel to null also clears BindingContext.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ViewModel_WhenSetToNull_ClearsBindingContext()
     {

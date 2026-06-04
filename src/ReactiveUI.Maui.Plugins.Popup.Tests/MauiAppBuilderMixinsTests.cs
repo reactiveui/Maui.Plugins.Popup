@@ -19,6 +19,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup extension method exists.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_ExtensionMethodExists()
     {
@@ -33,6 +34,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with backPressHandler exists.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithBackPressHandler_ExtensionMethodExists()
     {
@@ -47,6 +49,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with configureReactiveUI exists.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithConfigureReactiveUI_ExtensionMethodExists()
     {
@@ -61,6 +64,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with backPressHandler and configureReactiveUI exists.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithBackPressHandlerAndConfigureReactiveUI_ExtensionMethodExists()
     {
@@ -75,6 +79,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup returns MauiAppBuilder for chaining.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_ReturnsCorrectType()
     {
@@ -90,6 +95,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with backPressHandler returns MauiAppBuilder.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithBackPressHandler_ReturnsCorrectType()
     {
@@ -105,6 +111,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with configureReactiveUI returns MauiAppBuilder.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithConfigureReactiveUI_ReturnsCorrectType()
     {
@@ -120,6 +127,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with backPressHandler and configureReactiveUI returns MauiAppBuilder.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithBackPressHandlerAndConfigureReactiveUI_ReturnsCorrectType()
     {
@@ -135,6 +143,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that MauiAppBuilderMixins is a static class.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task MauiAppBuilderMixins_IsStaticClass()
     {
@@ -146,6 +155,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup first parameter is MauiAppBuilder.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_FirstParameterIsMauiAppBuilder()
     {
@@ -165,6 +175,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with backPressHandler has correct parameters.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithBackPressHandler_HasCorrectParameters()
     {
@@ -186,6 +197,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with configureReactiveUI has correct parameters.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithConfigureReactiveUI_HasCorrectParameters()
     {
@@ -207,6 +219,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with backPressHandler and configureReactiveUI has correct parameters.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithBackPressHandlerAndConfigureReactiveUI_HasCorrectParameters()
     {
@@ -230,6 +243,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that MauiAppBuilderMixins is in correct namespace.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task MauiAppBuilderMixins_IsInCorrectNamespace() =>
         await Assert.That(typeof(MauiAppBuilderMixins).Namespace).IsEqualTo("Microsoft.Maui.Hosting");
@@ -237,6 +251,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that there are exactly four ConfigureReactiveUIPopup overloads.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_HasFourOverloads()
     {
@@ -253,6 +268,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that all ConfigureReactiveUIPopup overloads are static methods.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_AllOverloads_AreStaticMethods()
     {
@@ -272,6 +288,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup without backPressHandler configures services and returns builder.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WhenCalled_ReturnsSameBuilder()
     {
@@ -288,6 +305,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with configureReactiveUI invokes the callback and returns builder.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithConfigureReactiveUI_InvokesCallbackAndReturnsSameBuilder()
     {
@@ -306,6 +324,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with null configureReactiveUI does not throw.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithNullConfigureReactiveUI_DoesNotThrow()
     {
@@ -322,6 +341,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with backPressHandler returns same builder.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithBackPressHandler_ReturnsSameBuilder()
     {
@@ -338,6 +358,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with null backPressHandler does not throw.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithNullBackPressHandler_DoesNotThrow()
     {
@@ -354,6 +375,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with both backPressHandler and configureReactiveUI returns same builder.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithBackPressHandlerAndConfigureReactiveUI_ReturnsSameBuilder()
     {
@@ -374,6 +396,7 @@ public class MauiAppBuilderMixinsTests
     /// <summary>
     /// Tests that ConfigureReactiveUIPopup with null backPressHandler and null configureReactiveUI does not throw.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task ConfigureReactiveUIPopup_WithNullBackPressHandlerAndNullConfigureReactiveUI_DoesNotThrow()
     {

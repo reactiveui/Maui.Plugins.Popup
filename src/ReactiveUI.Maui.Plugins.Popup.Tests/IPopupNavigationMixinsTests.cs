@@ -23,6 +23,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that PopAllPopup returns observable that completes.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PopAllPopup_WithDefaultAnimation_ReturnsObservable()
     {
@@ -54,6 +55,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that PopPopup returns observable that completes.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PopPopup_WithDefaultAnimation_ReturnsObservable()
     {
@@ -85,6 +87,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that PushPopup returns observable that completes.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushPopup_WithPage_ReturnsObservable()
     {
@@ -123,6 +126,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that RemovePopupPage returns observable that completes.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task RemovePopupPage_WithPage_ReturnsObservable()
     {
@@ -161,6 +165,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that PoppingObservable returns an observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppingObservable_ReturnsObservable()
     {
@@ -174,6 +179,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that PoppingObservable fires when event is raised.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppingObservable_WhenEventRaised_EmitsEventArgs()
     {
@@ -196,6 +202,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that PoppedObservable returns an observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppedObservable_ReturnsObservable()
     {
@@ -209,6 +216,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that PoppedObservable fires when event is raised.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppedObservable_WhenEventRaised_EmitsEventArgs()
     {
@@ -231,6 +239,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that PushingObservable returns an observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushingObservable_ReturnsObservable()
     {
@@ -244,6 +253,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that PushingObservable fires when event is raised.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushingObservable_WhenEventRaised_EmitsEventArgs()
     {
@@ -266,6 +276,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that PushedObservable returns an observable.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushedObservable_ReturnsObservable()
     {
@@ -279,6 +290,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that PushedObservable fires when event is raised.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushedObservable_WhenEventRaised_EmitsEventArgs()
     {
@@ -301,6 +313,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that disposing the subscription unsubscribes from the event.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppingObservable_WhenDisposed_DoesNotReceiveEvents()
     {
@@ -326,6 +339,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that disposing the subscription unsubscribes from the Popped event.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppedObservable_WhenDisposed_DoesNotReceiveEvents()
     {
@@ -349,6 +363,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that disposing the subscription unsubscribes from the Pushing event.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushingObservable_WhenDisposed_DoesNotReceiveEvents()
     {
@@ -372,6 +387,7 @@ public class IPopupNavigationMixinsTests
     /// <summary>
     /// Tests that disposing the subscription unsubscribes from the Pushed event.
     /// </summary>
+    /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushedObservable_WhenDisposed_DoesNotReceiveEvents()
     {
