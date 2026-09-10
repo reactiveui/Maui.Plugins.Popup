@@ -22,7 +22,7 @@
     <PackageVersion Include="Microsoft.Testing.Platform.MSBuild" Version="2.3.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="MinVer" Version="7.0.0" />
+    <PackageVersion Include="MinVer" Version="8.0.0" />
     <PackageVersion Include="Roslynator.Analyzers" Version="4.15.0" />
     <PackageVersion Include="stylecop.analyzers" Version="1.2.0-beta.556" />
   </ItemGroup>
