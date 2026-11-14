@@ -30,12 +30,13 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    
-    <ReactiveUIMauiWindowsTargets>net10.0-windows10.0.19041.0</ReactiveUIMauiWindowsTargets>
-    <ReactiveUIAppleTargets>net10.0-ios;net10.0-tvos;net10.0-macos;net10.0-maccatalyst</ReactiveUIAppleTargets>
-    <ReactiveUIAndroidTargets>net10.0-android</ReactiveUIAndroidTargets>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+
+    <ReactiveUIMauiWindowsTargets>net10.0-windows10.0.19041.0;net11.0-windows10.0.19041.0</ReactiveUIMauiWindowsTargets>
+    <ReactiveUIAppleTargets>net10.0-ios;net10.0-tvos;net10.0-macos;net10.0-maccatalyst;net11.0-ios;net11.0-tvos;net11.0-macos;net11.0-maccatalyst</ReactiveUIAppleTargets>
+    <ReactiveUIAndroidTargets>net10.0-android;net11.0-android</ReactiveUIAndroidTargets>
     <ReactiveMauiTargets Condition="$([MSBuild]::IsOsPlatform('Windows'))">$(ReactiveUIMauiWindowsTargets)</ReactiveMauiTargets>
-    <ReactiveMauiTargets>$(ReactiveMauiTargets);net9.0;net10.0;$(ReactiveUIAndroidTargets)</ReactiveMauiTargets>
+    <ReactiveMauiTargets>$(ReactiveMauiTargets);net10.0;net11.0;$(ReactiveUIAndroidTargets)</ReactiveMauiTargets>
     <ReactiveMauiTargets Condition="$([MSBuild]::IsOsPlatform('Windows')) or $([MSBuild]::IsOsPlatform('OSX'))">$(ReactiveMauiTargets);$(ReactiveUIAppleTargets)</ReactiveMauiTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
