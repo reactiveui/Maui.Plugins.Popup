@@ -1,8 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>$(ReactiveMauiTargets)</TargetFrameworks>
-    <PackageDescription>Contains the ReactiveUI platform specific extensions for Microsoft Maui Popup</PackageDescription>
-    <PackageTags>mvvm;reactiveui;rx;reactive extensions;observable;LINQ;events;frp;maui;android;ios;mac;windows;net;popup</PackageTags>
 		<UseMaui>true</UseMaui>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -20,6 +18,7 @@
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition="$(TargetFramework.StartsWith('net10'))" />
     <PackageReference Include="Mopups" />
     <PackageReference Include="ReactiveUI.Maui" />
+    <PackageReference Include="System.Reactive" />
   </ItemGroup>
 
 </Project>

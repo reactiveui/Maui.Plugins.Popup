@@ -5,14 +5,14 @@
     <IsTestProject>$(MSBuildProjectName.Contains('Tests'))</IsTestProject>
     <DebugType>embedded</DebugType>
     <Authors>ReactiveUI and Contributors</Authors>
-    <Copyright>Copyright (c) ReactiveUI and Contributors</Copyright>
+    <Company>ReactiveUI</Company>
+    <Copyright>Copyright (c) ReactiveUI and Contributors $([System.DateTime]::Now.ToString('yyyy'))</Copyright>
     <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://reactiveui.net</PackageProjectUrl>
-    <DefaultPackageDescription>A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. Supports Maui Popups.</DefaultPackageDescription>
-    <PackageDescription>$(DefaultPackageDescription)</PackageDescription>
-    <PackageTags>mvvm;reactiveui;rx;reactive extensions;observable;LINQ;events;frp;android;ios;mac;maui</PackageTags>
+    <Description>ReactiveUI view model bindings and observable popup navigation for Mopups in .NET MAUI applications.</Description>
+    <PackageTags>reactiveui;maui;mopups;popup;mvvm;reactive;android;ios;mac;windows</PackageTags>
     <PackageReleaseNotes>https://github.com/reactiveui/Maui.Plugins.Popup/releases</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/reactiveui/Maui.Plugins.Popup</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -23,20 +23,17 @@
     <!-- Include PDB in the built .nupkg -->
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <Nullable>enable</Nullable>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>latest</LangVersion>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <AnalysisLevel>latest</AnalysisLevel>
     <WarningsAsErrors>nullable</WarningsAsErrors>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
 
     <ReactiveUIMauiWindowsTargets>net10.0-windows10.0.19041.0;net11.0-windows10.0.19041.0</ReactiveUIMauiWindowsTargets>
     <ReactiveUIAppleTargets>net10.0-ios;net10.0-tvos;net10.0-macos;net10.0-maccatalyst;net11.0-ios;net11.0-tvos;net11.0-macos;net11.0-maccatalyst</ReactiveUIAppleTargets>
     <ReactiveUIAndroidTargets>net10.0-android;net11.0-android</ReactiveUIAndroidTargets>
-    <ReactiveMauiTargets Condition="$([MSBuild]::IsOsPlatform('Windows'))">$(ReactiveUIMauiWindowsTargets)</ReactiveMauiTargets>
-    <ReactiveMauiTargets>$(ReactiveMauiTargets);net10.0;net11.0;$(ReactiveUIAndroidTargets)</ReactiveMauiTargets>
+    <ReactiveMauiTargets>net10.0;net11.0;$(ReactiveUIMauiWindowsTargets);$(ReactiveUIAndroidTargets)</ReactiveMauiTargets>
     <ReactiveMauiTargets Condition="$([MSBuild]::IsOsPlatform('Windows')) or $([MSBuild]::IsOsPlatform('OSX'))">$(ReactiveMauiTargets);$(ReactiveUIAppleTargets)</ReactiveMauiTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
@@ -51,13 +48,8 @@
     <PackageReference Include="Mopups" />
     <PackageReference Include="System.Reactive" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="Microsoft.Reactive.Testing" />
-    <PackageReference Include="PublicApiGenerator" />
     <PackageReference Include="TUnit" />
-    <PackageReference Include="TUnit.Core" />
-    <PackageReference Include="Verify.TUnit" />
     <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" />
-    <PackageReference Include="Microsoft.Testing.Platform.MSBuild" />
 
     <None Include="$(MSBuildThisFileDirectory)testconfig.json">
       <Link>$(AssemblyName).testconfig.json</Link>

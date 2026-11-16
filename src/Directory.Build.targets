@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+  </PropertyGroup>
+  <!-- This library contains no WinUI resources; MakePri.exe requires Windows. -->
+  <PropertyGroup Condition="'$(UseMaui)' == 'true' and '$(OutputType)' == 'Library' and $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and !$([MSBuild]::IsOsPlatform('Windows'))">
+    <EnableCoreMrtTooling>false</EnableCoreMrtTooling>
+    <EnablePriGenTooling>false</EnablePriGenTooling>
+    <AppxGeneratePriEnabled>false</AppxGeneratePriEnabled>
+    <IncludeProjectPriFile>false</IncludeProjectPriFile>
+  </PropertyGroup>
+</Project>

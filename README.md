@@ -5,7 +5,7 @@
 
 <br>
 <a href="https://github.com/reactiveui/reactiveui">
-  <img width="160" height="160" src="https://raw.githubusercontent.com/reactiveui/styleguide/master/logo/main.png">
+  <img width="160" height="160" alt="ReactiveUI MAUI Popups" src="https://raw.githubusercontent.com/reactiveui/Maui.Plugins.Popup/main/images/logo.png">
 </a>
 <br>
 
