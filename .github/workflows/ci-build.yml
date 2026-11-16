@@ -18,5 +18,7 @@ jobs:
       configuration: Release
       productNamespacePrefix: ReactiveUI.Maui.Plugins.Popup
       installWorkloads: true
+      testProjects: |
+        ReactiveUI.Maui.Plugins.Popup.Tests/ReactiveUI.Maui.Plugins.Popup.Tests.csproj
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
