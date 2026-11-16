@@ -8,16 +8,18 @@
         "Configuration": {
             "Format": "cobertura",
             "CodeCoverage": {
-                "SkipAutoProperties": true,
+            "SkipAutoProperties": false,
+            "Attributes": {
+                "Exclude": ["^System\\.CodeDom\\.Compiler\\.GeneratedCodeAttribute$"]
+            },
+            "Sources": {
+                "Exclude": ["[/\\\\]obj[/\\\\].*\\.g\\.cs$"]
+            },
                 "ModulePaths": {
+                "Include": ["ReactiveUI\\.Maui\\.Plugins\\.Popup\\.dll$"],
                     "Exclude": [
                         ".*Tests\\.dll$",
                         ".*TestRunner.*"
-                    ]
-                },
-                "Functions": {
-                    "Exclude": [
-                        ".*__.*"
                     ]
                 }
             }

@@ -29,7 +29,6 @@
     <WarningsAsErrors>nullable</WarningsAsErrors>
     <IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
-
     <ReactiveUIMauiWindowsTargets>net10.0-windows10.0.19041.0;net11.0-windows10.0.19041.0</ReactiveUIMauiWindowsTargets>
     <ReactiveUIAppleTargets>net10.0-ios;net10.0-tvos;net10.0-macos;net10.0-maccatalyst;net11.0-ios;net11.0-tvos;net11.0-macos;net11.0-maccatalyst</ReactiveUIAppleTargets>
     <ReactiveUIAndroidTargets>net10.0-android;net11.0-android</ReactiveUIAndroidTargets>
@@ -39,18 +38,14 @@
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(IsTestProject)' == 'true'">
     <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
   </PropertyGroup>
-  
   <ItemGroup Condition="$(IsTestProject)">
     <PackageReference Include="Mopups" />
     <PackageReference Include="System.Reactive" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="TUnit" />
     <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" />
-
     <None Include="$(MSBuildThisFileDirectory)testconfig.json">
       <Link>$(AssemblyName).testconfig.json</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -76,10 +71,17 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MinVer" PrivateAssets="all" />
-    <PackageReference Include="stylecop.analyzers" PrivateAssets="all" />
-    <PackageReference Include="Roslynator.Analyzers" PrivateAssets="All" />
   </ItemGroup>
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
   <ItemGroup>
-    <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" />
+    <PackageReference Include="StyleSharp.Analyzers" PrivateAssets="all" />
+    <PackageReference Include="PerformanceSharp.Analyzers" PrivateAssets="all" />
+    <PackageReference Include="SecuritySharp.Analyzers" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(IsTestProject)' != 'true'">
+    <PackageReference Include="PublicApiSharp.Analyzers" PrivateAssets="all" />
   </ItemGroup>
 </Project>

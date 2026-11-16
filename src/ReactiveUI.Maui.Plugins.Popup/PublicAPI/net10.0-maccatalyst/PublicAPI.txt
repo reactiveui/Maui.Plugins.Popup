@@ -1,0 +1,96 @@
+[assembly: Microsoft.Maui.Controls.XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "Microsoft.Maui", AssemblyName="Microsoft.Maui")]
+[assembly: Microsoft.Maui.Controls.XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "Microsoft.Maui.Controls", AssemblyName="Microsoft.Maui.Controls")]
+[assembly: Microsoft.Maui.Controls.XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "Microsoft.Maui.Controls.Shapes", AssemblyName="Microsoft.Maui.Controls")]
+[assembly: Microsoft.Maui.Controls.XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "Microsoft.Maui.Controls.Xaml", AssemblyName="Microsoft.Maui.Controls.Xaml")]
+[assembly: Microsoft.Maui.Controls.XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "Microsoft.Maui.Graphics", AssemblyName="Microsoft.Maui.Graphics")]
+[assembly: Microsoft.Maui.Controls.XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "http://schemas.microsoft.com/dotnet/2021/maui")]
+[assembly: Microsoft.Maui.Controls.XmlnsPrefix("http://schemas.microsoft.com/dotnet/maui/global", "global")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ReactiveUI.Maui.Plugins.Popup.Tests")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatform("MacCatalyst15.0")]
+namespace Microsoft.Maui.Hosting
+{
+    public static class MauiAppBuilderMixins
+    {
+        extension(Microsoft.Maui.Hosting.MauiAppBuilder builder)
+        {
+            public Microsoft.Maui.Hosting.MauiAppBuilder ConfigureReactiveUIPopup() { }
+            public Microsoft.Maui.Hosting.MauiAppBuilder ConfigureReactiveUIPopup(System.Action<ReactiveUI.Builder.IReactiveUIBuilder>? configureReactiveUI) { }
+            public Microsoft.Maui.Hosting.MauiAppBuilder ConfigureReactiveUIPopup(System.Action? backPressHandler) { }
+            public Microsoft.Maui.Hosting.MauiAppBuilder ConfigureReactiveUIPopup(System.Action? backPressHandler, System.Action<ReactiveUI.Builder.IReactiveUIBuilder>? configureReactiveUI) { }
+        }
+    }
+}
+namespace ReactiveUI.Maui.Plugins.Popup
+{
+    public static class INavigationMixins
+    {
+        extension(Microsoft.Maui.Controls.INavigation navigation)
+        {
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PopAllPopup() { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PopAllPopup(bool animate) { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PopPopup() { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PopPopup(bool animate) { }
+            public System.IObservable<Mopups.Events.PopupNavigationEventArgs> PoppedObservable() { }
+            public System.IObservable<Mopups.Events.PopupNavigationEventArgs> PoppingObservable() { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PushPopup<T>(T page) where T : Mopups.Pages.PopupPage { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PushPopup<T>(T page, bool animate) where T : Mopups.Pages.PopupPage { }
+            public System.IObservable<Mopups.Events.PopupNavigationEventArgs> PushedObservable() { }
+            public System.IObservable<Mopups.Events.PopupNavigationEventArgs> PushingObservable() { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> RemovePopupPage<T>(T page) where T : Mopups.Pages.PopupPage { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> RemovePopupPage<T>(T page, bool animate) where T : Mopups.Pages.PopupPage { }
+        }
+    }
+    public static class IPopupNavigationMixins
+    {
+        extension(Mopups.Interfaces.IPopupNavigation service)
+        {
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PopAllPopup() { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PopAllPopup(bool animate) { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PopPopup() { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PopPopup(bool animate) { }
+            public System.IObservable<Mopups.Events.PopupNavigationEventArgs> PoppedObservable() { }
+            public System.IObservable<Mopups.Events.PopupNavigationEventArgs> PoppingObservable() { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PushPopup<T>(T page) where T : Mopups.Pages.PopupPage { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> PushPopup<T>(T page, bool animate) where T : Mopups.Pages.PopupPage { }
+            public System.IObservable<Mopups.Events.PopupNavigationEventArgs> PushedObservable() { }
+            public System.IObservable<Mopups.Events.PopupNavigationEventArgs> PushingObservable() { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> RemovePopupPage<T>(T page) where T : Mopups.Pages.PopupPage { }
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+            public System.IObservable<System.Reactive.Unit> RemovePopupPage<T>(T page, bool animate) where T : Mopups.Pages.PopupPage { }
+        }
+    }
+    [System.Diagnostics.DebuggerDisplay("{ViewModel}")]
+    public abstract class ReactivePopupPage : Mopups.Pages.PopupPage, ReactiveUI.Binding.IViewFor
+    {
+        protected ReactivePopupPage() { }
+        public static readonly Microsoft.Maui.Controls.BindableProperty ViewModelProperty;
+        public System.IObservable<System.Reactive.Unit> BackgroundClick { get; protected set; }
+        protected System.Reactive.Disposables.CompositeDisposable ControlBindings { get; }
+        public object? ViewModel { get; set; }
+        protected override void OnBindingContextChanged() { }
+        protected static void OnViewModelChanged(Microsoft.Maui.Controls.BindableObject bindableObject, object oldValue, object newValue) { }
+    }
+    [System.Diagnostics.DebuggerDisplay("{ViewModel}")]
+    public abstract class ReactivePopupPage<TViewModel> : ReactiveUI.Maui.Plugins.Popup.ReactivePopupPage, ReactiveUI.Binding.IViewFor<TViewModel> where TViewModel : class
+    {
+        protected ReactivePopupPage() { }
+        public static readonly Microsoft.Maui.Controls.BindableProperty ViewModelProperty;
+        public TViewModel? ViewModel { get; set; }
+        protected override void OnBindingContextChanged() { }
+    }
+}

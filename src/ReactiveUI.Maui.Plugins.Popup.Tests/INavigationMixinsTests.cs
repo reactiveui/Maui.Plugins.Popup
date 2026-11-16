@@ -1,274 +1,163 @@
-// Copyright (c) 2024-2025 ReactiveUI and Contributors. All rights reserved.
-// Licensed to the ReactiveUI under one or more agreements.
-// ReactiveUI licenses this file to you under the MIT license.
+// Copyright (c) 2019-2026 ReactiveUI and Contributors. All rights reserved.
+// ReactiveUI and Contributors licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
+using Mopups.Services;
 using ReactiveUI.Maui.Plugins.Popup.Tests.Mocks;
 
 namespace ReactiveUI.Maui.Plugins.Popup.Tests;
 
-/// <summary>
-/// Tests for <see cref="INavigationMixins"/>.
-/// </summary>
-/// <remarks>
-/// These tests verify the observable creation patterns.
-/// The actual navigation operations depend on MopupService.Instance which is a static singleton.
-/// </remarks>
-public class INavigationMixinsTests
+/// <summary>Checks navigation through the configured popup service.</summary>
+public sealed class INavigationMixinsTests
 {
-    private TestNavigation _navigation = null!;
+    /// <summary>The test mode that explicitly enables animation.</summary>
+    private const int AnimatedMode = 2;
 
-    /// <summary>
-    /// Sets up the test fixtures.
-    /// </summary>
-    [Before(Test)]
-    public void SetUp() => _navigation = new TestNavigation();
-
-    /// <summary>
-    /// Tests that PopAllPopup returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
+    /// <summary>PopAllPopup defers navigation and forwards its animation setting.</summary>
+    /// <param name="mode">Zero uses the default; one disables animation; two enables it.</param>
+    /// <returns>A task representing the asynchronous test.</returns>
     [Test]
-    public async Task PopAllPopup_ReturnsNonNullObservable()
+    [Arguments(0)]
+    [Arguments(1)]
+    [Arguments(2)]
+    public async Task PopAllPopup_ForwardsOnSubscription(int mode)
     {
-        // Act
-        var result = _navigation.PopAllPopup();
-
-        // Assert
-        await Assert.That(result).IsNotNull();
+        var navigation = new TestNavigation();
+        var service = (TestPopupNavigation)MopupService.Instance;
+        var observable = mode == 0 ? navigation.PopAllPopup() : navigation.PopAllPopup(mode == AnimatedMode);
+        await Assert.That(service.PopAllAsyncCalled).IsFalse();
+        await observable.ToTask();
+        await Assert.That(service.PopAllAsyncCalled).IsTrue();
+        await Assert.That(service.LastAnimateValue).IsEqualTo(mode != 1);
     }
 
-    /// <summary>
-    /// Tests that PopAllPopup with animate false returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
+    /// <summary>PopPopup defers navigation and forwards its animation setting.</summary>
+    /// <param name="mode">Zero uses the default; one disables animation; two enables it.</param>
+    /// <returns>A task representing the asynchronous test.</returns>
     [Test]
-    public async Task PopAllPopup_WithAnimateFalse_ReturnsNonNullObservable()
+    [Arguments(0)]
+    [Arguments(1)]
+    [Arguments(2)]
+    public async Task PopPopup_ForwardsOnSubscription(int mode)
     {
-        // Act
-        var result = _navigation.PopAllPopup(animate: false);
-
-        // Assert
-        await Assert.That(result).IsNotNull();
+        var navigation = new TestNavigation();
+        var service = (TestPopupNavigation)MopupService.Instance;
+        var observable = mode == 0 ? navigation.PopPopup() : navigation.PopPopup(mode == AnimatedMode);
+        await Assert.That(service.PopAsyncCalled).IsFalse();
+        await observable.ToTask();
+        await Assert.That(service.PopAsyncCalled).IsTrue();
+        await Assert.That(service.LastAnimateValue).IsEqualTo(mode != 1);
     }
 
-    /// <summary>
-    /// Tests that PopPopup returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
+    /// <summary>PushPopup defers navigation and forwards its animation setting.</summary>
+    /// <param name="mode">Zero uses the default; one disables animation; two enables it.</param>
+    /// <returns>A task representing the asynchronous test.</returns>
     [Test]
-    public async Task PopPopup_ReturnsNonNullObservable()
+    [Arguments(0)]
+    [Arguments(1)]
+    [Arguments(2)]
+    public async Task PushPopup_ForwardsOnSubscription(int mode)
     {
-        // Act
-        var result = _navigation.PopPopup();
-
-        // Assert
-        await Assert.That(result).IsNotNull();
+        var navigation = new TestNavigation();
+        var service = (TestPopupNavigation)MopupService.Instance;
+        var page = new PopupPage();
+        var observable = mode == 0 ? navigation.PushPopup(page) : navigation.PushPopup(page, mode == AnimatedMode);
+        await Assert.That(service.PushAsyncCalled).IsFalse();
+        await observable.ToTask();
+        await Assert.That(service.PushAsyncCalled).IsTrue();
+        await Assert.That(service.LastAnimateValue).IsEqualTo(mode != 1);
+        await Assert.That(service.LastPage).IsSameReferenceAs(page);
     }
 
-    /// <summary>
-    /// Tests that PopPopup with animate false returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
+    /// <summary>RemovePopupPage defers navigation and forwards its animation setting.</summary>
+    /// <param name="mode">Zero uses the default; one disables animation; two enables it.</param>
+    /// <returns>A task representing the asynchronous test.</returns>
     [Test]
-    public async Task PopPopup_WithAnimateFalse_ReturnsNonNullObservable()
+    [Arguments(0)]
+    [Arguments(1)]
+    [Arguments(2)]
+    public async Task RemovePopupPage_ForwardsOnSubscription(int mode)
     {
-        // Act
-        var result = _navigation.PopPopup(animate: false);
-
-        // Assert
-        await Assert.That(result).IsNotNull();
+        var navigation = new TestNavigation();
+        var service = (TestPopupNavigation)MopupService.Instance;
+        var page = new PopupPage();
+        var observable = mode == 0 ? navigation.RemovePopupPage(page) : navigation.RemovePopupPage(page, mode == AnimatedMode);
+        await Assert.That(service.RemovePageAsyncCalled).IsFalse();
+        await observable.ToTask();
+        await Assert.That(service.RemovePageAsyncCalled).IsTrue();
+        await Assert.That(service.LastAnimateValue).IsEqualTo(mode != 1);
+        await Assert.That(service.LastPage).IsSameReferenceAs(page);
     }
 
-    /// <summary>
-    /// Tests that PushPopup returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
+    /// <summary>Popping subscriptions forward event data and detach on disposal.</summary>
+    /// <returns>A task representing the asynchronous test.</returns>
     [Test]
-    public async Task PushPopup_WithPage_ReturnsNonNullObservable()
+    public async Task PoppingObservable_ForwardsAndDetaches()
     {
-        // Arrange
-        var page = new Mopups.Pages.PopupPage();
-
-        // Act
-        var result = _navigation.PushPopup(page);
-
-        // Assert
-        await Assert.That(result).IsNotNull();
+        var navigation = new TestNavigation();
+        var service = (TestPopupNavigation)MopupService.Instance;
+        var notifications = new List<PopupNavigationEventArgs>();
+        var eventArgs = new PopupNavigationEventArgs(new PopupPage(), true);
+        var observable = navigation.PoppingObservable();
+        var subscription = observable.Subscribe(notifications.Add);
+        service.RaisePopping(eventArgs);
+        subscription.Dispose();
+        service.RaisePopping(eventArgs);
+        await Assert.That(notifications.Count).IsEqualTo(1);
+        await Assert.That(notifications[0]).IsSameReferenceAs(eventArgs);
     }
 
-    /// <summary>
-    /// Tests that PushPopup with animate false returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
+    /// <summary>Popped subscriptions forward event data and detach on disposal.</summary>
+    /// <returns>A task representing the asynchronous test.</returns>
     [Test]
-    public async Task PushPopup_WithAnimateFalse_ReturnsNonNullObservable()
+    public async Task PoppedObservable_ForwardsAndDetaches()
     {
-        // Arrange
-        var page = new Mopups.Pages.PopupPage();
-
-        // Act
-        var result = _navigation.PushPopup(page, animate: false);
-
-        // Assert
-        await Assert.That(result).IsNotNull();
+        var navigation = new TestNavigation();
+        var service = (TestPopupNavigation)MopupService.Instance;
+        var notifications = new List<PopupNavigationEventArgs>();
+        var eventArgs = new PopupNavigationEventArgs(new PopupPage(), true);
+        var observable = navigation.PoppedObservable();
+        var subscription = observable.Subscribe(notifications.Add);
+        service.RaisePopped(eventArgs);
+        subscription.Dispose();
+        service.RaisePopped(eventArgs);
+        await Assert.That(notifications.Count).IsEqualTo(1);
+        await Assert.That(notifications[0]).IsSameReferenceAs(eventArgs);
     }
 
-    /// <summary>
-    /// Tests that RemovePopupPage returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
+    /// <summary>Pushing subscriptions forward event data and detach on disposal.</summary>
+    /// <returns>A task representing the asynchronous test.</returns>
     [Test]
-    public async Task RemovePopupPage_WithPage_ReturnsNonNullObservable()
+    public async Task PushingObservable_ForwardsAndDetaches()
     {
-        // Arrange
-        var page = new Mopups.Pages.PopupPage();
-
-        // Act
-        var result = _navigation.RemovePopupPage(page);
-
-        // Assert
-        await Assert.That(result).IsNotNull();
+        var navigation = new TestNavigation();
+        var service = (TestPopupNavigation)MopupService.Instance;
+        var notifications = new List<PopupNavigationEventArgs>();
+        var eventArgs = new PopupNavigationEventArgs(new PopupPage(), true);
+        var observable = navigation.PushingObservable();
+        var subscription = observable.Subscribe(notifications.Add);
+        service.RaisePushing(eventArgs);
+        subscription.Dispose();
+        service.RaisePushing(eventArgs);
+        await Assert.That(notifications.Count).IsEqualTo(1);
+        await Assert.That(notifications[0]).IsSameReferenceAs(eventArgs);
     }
 
-    /// <summary>
-    /// Tests that RemovePopupPage with animate false returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
+    /// <summary>Pushed subscriptions forward event data and detach on disposal.</summary>
+    /// <returns>A task representing the asynchronous test.</returns>
     [Test]
-    public async Task RemovePopupPage_WithAnimateFalse_ReturnsNonNullObservable()
+    public async Task PushedObservable_ForwardsAndDetaches()
     {
-        // Arrange
-        var page = new Mopups.Pages.PopupPage();
-
-        // Act
-        var result = _navigation.RemovePopupPage(page, animate: false);
-
-        // Assert
-        await Assert.That(result).IsNotNull();
-    }
-
-    /// <summary>
-    /// Tests that PoppingObservable returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
-    [Test]
-    public async Task PoppingObservable_ReturnsNonNullObservable()
-    {
-        // Act
-        var result = _navigation.PoppingObservable();
-
-        // Assert
-        await Assert.That(result).IsNotNull();
-    }
-
-    /// <summary>
-    /// Tests that PoppedObservable returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
-    [Test]
-    public async Task PoppedObservable_ReturnsNonNullObservable()
-    {
-        // Act
-        var result = _navigation.PoppedObservable();
-
-        // Assert
-        await Assert.That(result).IsNotNull();
-    }
-
-    /// <summary>
-    /// Tests that PushingObservable returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
-    [Test]
-    public async Task PushingObservable_ReturnsNonNullObservable()
-    {
-        // Act
-        var result = _navigation.PushingObservable();
-
-        // Assert
-        await Assert.That(result).IsNotNull();
-    }
-
-    /// <summary>
-    /// Tests that PushedObservable returns a non-null observable.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
-    [Test]
-    public async Task PushedObservable_ReturnsNonNullObservable()
-    {
-        // Act
-        var result = _navigation.PushedObservable();
-
-        // Assert
-        await Assert.That(result).IsNotNull();
-    }
-
-    /// <summary>
-    /// Tests that multiple subscriptions to PoppingObservable are independent.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
-    [Test]
-    public async Task PoppingObservable_MultipleSubscriptions_AreIndependent()
-    {
-        // Act
-        var observable1 = _navigation.PoppingObservable();
-        var observable2 = _navigation.PoppingObservable();
-
-        // Assert
-        await Assert.That(observable1).IsNotNull();
-        await Assert.That(observable2).IsNotNull();
-        await Assert.That(observable1).IsNotSameReferenceAs(observable2);
-    }
-
-    /// <summary>
-    /// Tests that multiple subscriptions to PoppedObservable are independent.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
-    [Test]
-    public async Task PoppedObservable_MultipleSubscriptions_AreIndependent()
-    {
-        // Act
-        var observable1 = _navigation.PoppedObservable();
-        var observable2 = _navigation.PoppedObservable();
-
-        // Assert
-        await Assert.That(observable1).IsNotNull();
-        await Assert.That(observable2).IsNotNull();
-        await Assert.That(observable1).IsNotSameReferenceAs(observable2);
-    }
-
-    /// <summary>
-    /// Tests that multiple subscriptions to PushingObservable are independent.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
-    [Test]
-    public async Task PushingObservable_MultipleSubscriptions_AreIndependent()
-    {
-        // Act
-        var observable1 = _navigation.PushingObservable();
-        var observable2 = _navigation.PushingObservable();
-
-        // Assert
-        await Assert.That(observable1).IsNotNull();
-        await Assert.That(observable2).IsNotNull();
-        await Assert.That(observable1).IsNotSameReferenceAs(observable2);
-    }
-
-    /// <summary>
-    /// Tests that multiple subscriptions to PushedObservable are independent.
-    /// </summary>
-    /// <returns>A task representing the asynchronous unit test.</returns>
-    [Test]
-    public async Task PushedObservable_MultipleSubscriptions_AreIndependent()
-    {
-        // Act
-        var observable1 = _navigation.PushedObservable();
-        var observable2 = _navigation.PushedObservable();
-
-        // Assert
-        await Assert.That(observable1).IsNotNull();
-        await Assert.That(observable2).IsNotNull();
-        await Assert.That(observable1).IsNotSameReferenceAs(observable2);
+        var navigation = new TestNavigation();
+        var service = (TestPopupNavigation)MopupService.Instance;
+        var notifications = new List<PopupNavigationEventArgs>();
+        var eventArgs = new PopupNavigationEventArgs(new PopupPage(), true);
+        var observable = navigation.PushedObservable();
+        var subscription = observable.Subscribe(notifications.Add);
+        service.RaisePushed(eventArgs);
+        subscription.Dispose();
+        service.RaisePushed(eventArgs);
+        await Assert.That(notifications.Count).IsEqualTo(1);
+        await Assert.That(notifications[0]).IsSameReferenceAs(eventArgs);
     }
 }

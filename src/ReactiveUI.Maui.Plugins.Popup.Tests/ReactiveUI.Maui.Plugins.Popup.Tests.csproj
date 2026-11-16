@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <AssemblyAttribute Include="TUnit.Core.NotInParallelAttribute" />
+    <AssemblyAttribute Include="TUnit.Core.Executors.TestExecutorAttribute">
+      <_Parameter1>typeof(ReactiveUI.Maui.Plugins.Popup.Tests.PopupNavigationTestExecutor)</_Parameter1>
+      <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
+    </AssemblyAttribute>
     <ProjectReference Include="..\ReactiveUI.Maui.Plugins.Popup\ReactiveUI.Maui.Plugins.Popup.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -19,8 +24,6 @@
     <Using Include="System.Collections.Generic" />
     <Using Include="System.ComponentModel" />
     <Using Include="System.Diagnostics.CodeAnalysis" />
-    <Using Include="System.Linq" />
-    <Using Include="System.Linq.Expressions" />
     <Using Include="System.Reactive" />
     <Using Include="System.Reactive.Concurrency" />
     <Using Include="System.Reactive.Disposables" />

@@ -1,13 +1,10 @@
-﻿// Copyright (c) 2024-2025 ReactiveUI and Contributors. All rights reserved.
-// Licensed to the ReactiveUI under one or more agreements.
-// ReactiveUI licenses this file to you under the MIT license.
+// Copyright (c) 2019-2026 ReactiveUI and Contributors. All rights reserved.
+// ReactiveUI and Contributors licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
 namespace ReactiveUI.Maui.Plugins.Popup;
 
-/// <summary>
-/// Base Popup page that implements <see cref="IViewFor{TViewModel}"/>.
-/// </summary>
+/// <summary>Base Popup page that implements <see cref="IViewFor{TViewModel}"/>.</summary>
 /// <typeparam name="TViewModel">The type of the ViewModel that this page will bind to. Must be a reference type.</typeparam>
 /// <remarks>
 /// This generic variant of <see cref="ReactivePopupPage"/> provides strongly-typed ViewModel binding,
@@ -16,12 +13,12 @@ namespace ReactiveUI.Maui.Plugins.Popup;
 /// The type parameter ensures that your view is always bound to the correct ViewModel type, preventing
 /// runtime type errors.
 /// </remarks>
+[System.Diagnostics.DebuggerDisplay("{ViewModel}")]
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "SST1496", Justification = "This generic XAML page base keeps the view model contract while applications provide concrete popup content.")]
 public abstract class ReactivePopupPage<TViewModel> : ReactivePopupPage, IViewFor<TViewModel>
     where TViewModel : class
 {
-    /// <summary>
-    /// The view model property.
-    /// </summary>
+    /// <summary>The view model property.</summary>
     public static new readonly BindableProperty ViewModelProperty = BindableProperty.Create(
          nameof(ViewModel),
          typeof(TViewModel),
@@ -30,11 +27,9 @@ public abstract class ReactivePopupPage<TViewModel> : ReactivePopupPage, IViewFo
          BindingMode.OneWay,
          propertyChanged: OnViewModelChanged);
 
-    /// <summary>
-    /// Gets or sets the ViewModel to display.
-    /// </summary>
+    /// <summary>Gets or sets the ViewModel to display.</summary>
     /// <remarks>
-    /// Setting this property automatically updates the underlying <see cref="Microsoft.Maui.Controls.BindableObject.BindingContext"/>
+    /// Setting this property automatically updates the underlying <see cref="BindableObject.BindingContext"/>
     /// of the MAUI page. This property provides strongly-typed access to the ViewModel, ensuring type safety
     /// when accessing ViewModel properties and methods from code-behind or XAML.
     /// </remarks>

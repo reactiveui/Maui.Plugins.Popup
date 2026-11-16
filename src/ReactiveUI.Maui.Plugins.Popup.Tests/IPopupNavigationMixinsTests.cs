@@ -1,28 +1,19 @@
-// Copyright (c) 2024-2025 ReactiveUI and Contributors. All rights reserved.
-// Licensed to the ReactiveUI under one or more agreements.
-// ReactiveUI licenses this file to you under the MIT license.
+// Copyright (c) 2019-2026 ReactiveUI and Contributors. All rights reserved.
+// ReactiveUI and Contributors licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
 using ReactiveUI.Maui.Plugins.Popup.Tests.Mocks;
 
 namespace ReactiveUI.Maui.Plugins.Popup.Tests;
 
-/// <summary>
-/// Tests for <see cref="IPopupNavigationMixins"/>.
-/// </summary>
+/// <summary>Tests for <see cref="IPopupNavigationMixins"/>.</summary>
+[System.Diagnostics.DebuggerDisplay("IPopupNavigationMixinsTests: {_popupNavigation}")]
 public class IPopupNavigationMixinsTests
 {
-    private TestPopupNavigation _popupNavigation = null!;
+    /// <summary>The navigation service owned by this test.</summary>
+    private readonly TestPopupNavigation _popupNavigation = new();
 
-    /// <summary>
-    /// Sets up the test fixtures.
-    /// </summary>
-    [Before(Test)]
-    public void SetUp() => _popupNavigation = new TestPopupNavigation();
-
-    /// <summary>
-    /// Tests that PopAllPopup returns observable that completes.
-    /// </summary>
+    /// <summary>Tests that PopAllPopup returns observable that completes.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PopAllPopup_WithDefaultAnimation_ReturnsObservable()
@@ -34,9 +25,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(result).IsNotNull();
     }
 
-    /// <summary>
-    /// Tests that PopAllPopup calls service with correct animation parameter.
-    /// </summary>
+    /// <summary>Tests that PopAllPopup calls service with correct animation parameter.</summary>
     /// <param name="animate">The animate flag.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     [Test]
@@ -52,9 +41,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(_popupNavigation.LastAnimateValue).IsEqualTo(animate);
     }
 
-    /// <summary>
-    /// Tests that PopPopup returns observable that completes.
-    /// </summary>
+    /// <summary>Tests that PopPopup returns observable that completes.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PopPopup_WithDefaultAnimation_ReturnsObservable()
@@ -66,9 +53,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(result).IsNotNull();
     }
 
-    /// <summary>
-    /// Tests that PopPopup calls service with correct animation parameter.
-    /// </summary>
+    /// <summary>Tests that PopPopup calls service with correct animation parameter.</summary>
     /// <param name="animate">The animate flag.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     [Test]
@@ -84,9 +69,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(_popupNavigation.LastAnimateValue).IsEqualTo(animate);
     }
 
-    /// <summary>
-    /// Tests that PushPopup returns observable that completes.
-    /// </summary>
+    /// <summary>Tests that PushPopup returns observable that completes.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushPopup_WithPage_ReturnsObservable()
@@ -101,9 +84,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(result).IsNotNull();
     }
 
-    /// <summary>
-    /// Tests that PushPopup calls service with correct parameters.
-    /// </summary>
+    /// <summary>Tests that PushPopup calls service with correct parameters.</summary>
     /// <param name="animate">The animate flag.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     [Test]
@@ -123,9 +104,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(_popupNavigation.LastPage).IsEqualTo(page);
     }
 
-    /// <summary>
-    /// Tests that RemovePopupPage returns observable that completes.
-    /// </summary>
+    /// <summary>Tests that RemovePopupPage returns observable that completes.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task RemovePopupPage_WithPage_ReturnsObservable()
@@ -140,9 +119,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(result).IsNotNull();
     }
 
-    /// <summary>
-    /// Tests that RemovePopupPage calls service with correct parameters.
-    /// </summary>
+    /// <summary>Tests that RemovePopupPage calls service with correct parameters.</summary>
     /// <param name="animate">The animate flag.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     [Test]
@@ -162,9 +139,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(_popupNavigation.LastPage).IsEqualTo(page);
     }
 
-    /// <summary>
-    /// Tests that PoppingObservable returns an observable.
-    /// </summary>
+    /// <summary>Tests that PoppingObservable returns an observable.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppingObservable_ReturnsObservable()
@@ -176,9 +151,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(result).IsNotNull();
     }
 
-    /// <summary>
-    /// Tests that PoppingObservable fires when event is raised.
-    /// </summary>
+    /// <summary>Tests that PoppingObservable fires when event is raised.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppingObservable_WhenEventRaised_EmitsEventArgs()
@@ -199,9 +172,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(receivedArgs).IsEqualTo(eventArgs);
     }
 
-    /// <summary>
-    /// Tests that PoppedObservable returns an observable.
-    /// </summary>
+    /// <summary>Tests that PoppedObservable returns an observable.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppedObservable_ReturnsObservable()
@@ -213,9 +184,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(result).IsNotNull();
     }
 
-    /// <summary>
-    /// Tests that PoppedObservable fires when event is raised.
-    /// </summary>
+    /// <summary>Tests that PoppedObservable fires when event is raised.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppedObservable_WhenEventRaised_EmitsEventArgs()
@@ -236,9 +205,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(receivedArgs).IsEqualTo(eventArgs);
     }
 
-    /// <summary>
-    /// Tests that PushingObservable returns an observable.
-    /// </summary>
+    /// <summary>Tests that PushingObservable returns an observable.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushingObservable_ReturnsObservable()
@@ -250,9 +217,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(result).IsNotNull();
     }
 
-    /// <summary>
-    /// Tests that PushingObservable fires when event is raised.
-    /// </summary>
+    /// <summary>Tests that PushingObservable fires when event is raised.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushingObservable_WhenEventRaised_EmitsEventArgs()
@@ -273,9 +238,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(receivedArgs).IsEqualTo(eventArgs);
     }
 
-    /// <summary>
-    /// Tests that PushedObservable returns an observable.
-    /// </summary>
+    /// <summary>Tests that PushedObservable returns an observable.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushedObservable_ReturnsObservable()
@@ -287,9 +250,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(result).IsNotNull();
     }
 
-    /// <summary>
-    /// Tests that PushedObservable fires when event is raised.
-    /// </summary>
+    /// <summary>Tests that PushedObservable fires when event is raised.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushedObservable_WhenEventRaised_EmitsEventArgs()
@@ -310,9 +271,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(receivedArgs).IsEqualTo(eventArgs);
     }
 
-    /// <summary>
-    /// Tests that disposing the subscription unsubscribes from the event.
-    /// </summary>
+    /// <summary>Tests that disposing the subscription unsubscribes from the event.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppingObservable_WhenDisposed_DoesNotReceiveEvents()
@@ -336,9 +295,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(receivedCount).IsEqualTo(1);
     }
 
-    /// <summary>
-    /// Tests that disposing the subscription unsubscribes from the Popped event.
-    /// </summary>
+    /// <summary>Tests that disposing the subscription unsubscribes from the Popped event.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PoppedObservable_WhenDisposed_DoesNotReceiveEvents()
@@ -360,9 +317,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(receivedCount).IsEqualTo(1);
     }
 
-    /// <summary>
-    /// Tests that disposing the subscription unsubscribes from the Pushing event.
-    /// </summary>
+    /// <summary>Tests that disposing the subscription unsubscribes from the Pushing event.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushingObservable_WhenDisposed_DoesNotReceiveEvents()
@@ -384,9 +339,7 @@ public class IPopupNavigationMixinsTests
         await Assert.That(receivedCount).IsEqualTo(1);
     }
 
-    /// <summary>
-    /// Tests that disposing the subscription unsubscribes from the Pushed event.
-    /// </summary>
+    /// <summary>Tests that disposing the subscription unsubscribes from the Pushed event.</summary>
     /// <returns>A task representing the asynchronous unit test.</returns>
     [Test]
     public async Task PushedObservable_WhenDisposed_DoesNotReceiveEvents()

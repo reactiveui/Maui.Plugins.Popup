@@ -1,13 +1,12 @@
-// Copyright (c) 2024-2025 ReactiveUI and Contributors. All rights reserved.
-// Licensed to the ReactiveUI under one or more agreements.
-// ReactiveUI licenses this file to you under the MIT license.
+// Copyright (c) 2019-2026 ReactiveUI and Contributors. All rights reserved.
+// ReactiveUI and Contributors licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
+
+using System.Runtime.CompilerServices;
 
 namespace ReactiveUI.Maui.Plugins.Popup.Tests.Mocks;
 
-/// <summary>
-/// Test implementation of IPopupNavigation for testing purposes.
-/// </summary>
+/// <summary>Test implementation of IPopupNavigation for testing purposes.</summary>
 internal sealed class TestPopupNavigation : IPopupNavigation
 {
     /// <inheritdoc/>
@@ -22,34 +21,22 @@ internal sealed class TestPopupNavigation : IPopupNavigation
     /// <inheritdoc/>
     public event EventHandler<PopupNavigationEventArgs>? Pushed;
 
-    /// <summary>
-    /// Gets a value indicating whether PopAllAsync was called.
-    /// </summary>
+    /// <summary>Gets a value indicating whether PopAllAsync was called.</summary>
     public bool PopAllAsyncCalled { get; private set; }
 
-    /// <summary>
-    /// Gets a value indicating whether PopAsync was called.
-    /// </summary>
+    /// <summary>Gets a value indicating whether PopAsync was called.</summary>
     public bool PopAsyncCalled { get; private set; }
 
-    /// <summary>
-    /// Gets a value indicating whether PushAsync was called.
-    /// </summary>
+    /// <summary>Gets a value indicating whether PushAsync was called.</summary>
     public bool PushAsyncCalled { get; private set; }
 
-    /// <summary>
-    /// Gets a value indicating whether RemovePageAsync was called.
-    /// </summary>
+    /// <summary>Gets a value indicating whether RemovePageAsync was called.</summary>
     public bool RemovePageAsyncCalled { get; private set; }
 
-    /// <summary>
-    /// Gets a value indicating whether animation was enabled in the last call.
-    /// </summary>
+    /// <summary>Gets a value indicating whether animation was enabled in the last call.</summary>
     public bool LastAnimateValue { get; private set; }
 
-    /// <summary>
-    /// Gets the last page passed to a method.
-    /// </summary>
+    /// <summary>Gets the last page passed to a method.</summary>
     public PopupPage? LastPage { get; private set; }
 
     /// <inheritdoc/>
@@ -89,27 +76,23 @@ internal sealed class TestPopupNavigation : IPopupNavigation
         return Task.CompletedTask;
     }
 
-    /// <summary>
-    /// Raises the Pushing event for testing.
-    /// </summary>
+    /// <summary>Raises the Pushing event for testing.</summary>
     /// <param name="args">Event arguments.</param>
-    public void RaisePushing(PopupNavigationEventArgs args) => Pushing?.Invoke(this, args);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal void RaisePushing(PopupNavigationEventArgs args) => Pushing?.Invoke(this, args);
 
-    /// <summary>
-    /// Raises the Pushed event for testing.
-    /// </summary>
+    /// <summary>Raises the Pushed event for testing.</summary>
     /// <param name="args">Event arguments.</param>
-    public void RaisePushed(PopupNavigationEventArgs args) => Pushed?.Invoke(this, args);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal void RaisePushed(PopupNavigationEventArgs args) => Pushed?.Invoke(this, args);
 
-    /// <summary>
-    /// Raises the Popping event for testing.
-    /// </summary>
+    /// <summary>Raises the Popping event for testing.</summary>
     /// <param name="args">Event arguments.</param>
-    public void RaisePopping(PopupNavigationEventArgs args) => Popping?.Invoke(this, args);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal void RaisePopping(PopupNavigationEventArgs args) => Popping?.Invoke(this, args);
 
-    /// <summary>
-    /// Raises the Popped event for testing.
-    /// </summary>
+    /// <summary>Raises the Popped event for testing.</summary>
     /// <param name="args">Event arguments.</param>
-    public void RaisePopped(PopupNavigationEventArgs args) => Popped?.Invoke(this, args);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal void RaisePopped(PopupNavigationEventArgs args) => Popped?.Invoke(this, args);
 }
