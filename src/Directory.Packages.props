@@ -4,13 +4,13 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="ReactiveUI.Maui" Version="27.0.0" />
+    <PackageVersion Include="ReactiveUI.Maui" Version="27.0.1" />
     <PackageVersion Include="Mopups" Version="1.3.4" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="11.0.100" />
     <PackageVersion Include="System.Reactive" Version="7.0.0" />
-    <PackageVersion Include="TUnit" Version="1.85.0" />
+    <PackageVersion Include="TUnit" Version="1.87.12" />
     <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.12.0" />
   </ItemGroup>
   <ItemGroup>
