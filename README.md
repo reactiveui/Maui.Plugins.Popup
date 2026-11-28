@@ -1,27 +1,24 @@
-[![Build](https://github.com/reactiveui/Maui.Plugins.Popup/actions/workflows/ci-build.yml/badge.svg)](https://github.com/reactiveui/Maui.Plugins.Popup/actions/workflows/ci-build.yml)
-[![NuGet](https://img.shields.io/nuget/v/ReactiveUI.Maui.Plugins.Popup.svg)](https://www.nuget.org/packages/ReactiveUI.Maui.Plugins.Popup/)
-[![#yourfirstpr](https://img.shields.io/badge/first--timers--only-friendly-blue.svg)](https://reactiveui.net/contribute)
-[![](https://img.shields.io/badge/chat-slack-blue.svg)](https://reactiveui.net/slack)
+<div align="center">
 
-<br>
-<a href="https://github.com/reactiveui/reactiveui">
-  <img width="160" height="160" alt="ReactiveUI MAUI Popups" src="https://raw.githubusercontent.com/reactiveui/Maui.Plugins.Popup/main/images/logo.png">
-</a>
-<br>
+<a href="https://github.com/reactiveui/Maui.Plugins.Popup"><img src="https://raw.githubusercontent.com/reactiveui/Maui.Plugins.Popup/main/images/logo.png" alt="ReactiveUI.Maui.Plugins.Popup" width="128"></a>
 
 # ReactiveUI.Maui.Plugins.Popup
 
-This package provides [ReactiveUI](https://reactiveui.net/) bindings and helpers for the [Mopups](https://github.com/LuckyDucko/Mopups) library in .NET MAUI. It enables you to build composable, reactive popup views using the Model-View-ViewModel (MVVM) pattern.
+[![Build](https://img.shields.io/github/actions/workflow/status/reactiveui/Maui.Plugins.Popup/ci-build.yml?branch=main&label=build&logo=githubactions&logoColor=white)](https://github.com/reactiveui/Maui.Plugins.Popup/actions/workflows/ci-build.yml)
+[![NuGet](https://img.shields.io/nuget/v/ReactiveUI.Maui.Plugins.Popup?label=nuget&logo=nuget&logoColor=white&color=004880)](https://www.nuget.org/packages/ReactiveUI.Maui.Plugins.Popup)
+[![Downloads](https://img.shields.io/nuget/dt/ReactiveUI.Maui.Plugins.Popup?label=downloads&logo=nuget&logoColor=white&color=004880)](https://www.nuget.org/packages/ReactiveUI.Maui.Plugins.Popup)
+[![License](https://img.shields.io/github/license/reactiveui/Maui.Plugins.Popup?color=blue)](https://github.com/reactiveui/Maui.Plugins.Popup/blob/main/LICENSE)
+[![Discussions](https://img.shields.io/badge/discussions-ask%20a%20question-8A2BE2?logo=github&logoColor=white)](https://github.com/reactiveui/ReactiveUI/discussions)
 
----
+</div>
+
+This package provides [ReactiveUI](https://reactiveui.net/) bindings and helpers for the [Mopups](https://github.com/LuckyDucko/Mopups) library in .NET MAUI. It enables you to build composable, reactive popup views using the Model-View-ViewModel (MVVM) pattern.
 
 ## Packages
 
 Install the package into your MAUI project:
 
 - [![ReactiveUI.Maui.Plugins.Popup](https://img.shields.io/nuget/v/ReactiveUI.Maui.Plugins.Popup.svg)](https://www.nuget.org/packages/ReactiveUI.Maui.Plugins.Popup/)
-
----
 
 ## Recommended Setup
 
@@ -50,8 +47,6 @@ public static class MauiProgram
     }
 }
 ```
-
----
 
 ## Quick Example: First Reactive Popup
 
@@ -108,8 +103,6 @@ var popup = new ConfirmPopup { ViewModel = new ConfirmViewModel() };
 this.Navigation.PushPopup(popup).Subscribe();
 ```
 
----
-
 ## Understanding Hot and Cold Observables
 
 This library provides both **Hot** and **Cold** observables for different use cases:
@@ -163,8 +156,6 @@ popupService.PoppedObservable()
         Debug.WriteLine($"Popup dismissed: {args}");
     });
 ```
-
----
 
 ## API Reference
 
@@ -251,8 +242,6 @@ MopupService.Instance.PushedObservable()
     });
 ```
 
----
-
 ## Controls
 
 ### `ReactivePopupPage`
@@ -261,7 +250,30 @@ A base popup page that implements `IViewFor` for use without a specific ViewMode
 ### `ReactivePopupPage<TViewModel>`
 A strongly-typed popup page that implements `IViewFor<TViewModel>`, providing compile-time safety and IntelliSense support for your ViewModel.
 
----
+## Contribute
+
+ReactiveUI.Maui.Plugins.Popup is part of [ReactiveUI](https://github.com/reactiveui) and is released under the [MIT license](https://github.com/reactiveui/Maui.Plugins.Popup/blob/main/LICENSE). We welcome contributions of every size, from bug reports and documentation to features and tests.
+
+- **Questions:** ask in [GitHub Discussions](https://github.com/reactiveui/ReactiveUI/discussions).
+- **Bugs and feature requests:** open a [GitHub issue](https://github.com/reactiveui/Maui.Plugins.Popup/issues/new/choose).
+- **Larger changes:** open an issue or discussion first, so we can agree on the approach before you start.
+- **Contributor guide:** read [reactiveui.net/contribute](https://www.reactiveui.net/contribute/) for [building and testing](https://www.reactiveui.net/contribute/building-and-testing/) and [pull requests](https://www.reactiveui.net/contribute/pull-requests/).
+
+### Coding standards
+
+Every pull request must meet these standards. The build checks most of them.
+
+- Follow the [ReactiveUI C# style guide](https://www.reactiveui.net/contribute/software-style-guide/code-style/).
+- The repository's `.editorconfig` and the StyleSharp, PerformanceSharp and SecuritySharp analyzers run on every build. Fix each finding in the code. Do not suppress it or relax the `.editorconfig`.
+- Add tests for every bug fix and new feature.
+- Document public APIs with XML documentation comments.
+- Write commit messages in the [Conventional Commits](https://www.reactiveui.net/contribute/software-style-guide/commit-message-convention/) format.
+- Follow the [Code of Conduct](https://github.com/reactiveui/.github/blob/main/CODE_OF_CONDUCT.md).
+
+### Support the project
+
+- Sponsor the maintainers on GitHub Sponsors: [reactivemarbles](https://github.com/sponsors/reactivemarbles), [glennawatson](https://github.com/sponsors/glennawatson) and [chrispulman](https://github.com/sponsors/chrispulman).
+- Ask your employer to support open source, for example with the [balanced employee IP agreement](https://github.com/github/balanced-employee-ip-agreement).
 
 ## Sponsors
 
@@ -282,21 +294,3 @@ A strongly-typed popup page that implements `IViewFor<TViewModel>`, providing co
 See [our sponsors](https://www.reactiveui.net/sponsors/) for more information.
 JetBrains, Claude, Anthropic, OpenAI and Codex names and logos are trademarks of their respective owners.
 Snyk and the Snyk logo are trademarks of Snyk Ltd.
-
-## Sponsorship
-
-The core team members, ReactiveUI contributors and contributors in the ecosystem do this open-source work in their free time. If you use ReactiveUI, a serious task, and you'd like us to invest more time on it, please donate. This project increases your income/productivity too. It makes development and applications faster and it reduces the required bandwidth.
-
-[Become a sponsor](https://github.com/sponsors/reactivemarbles).
-
-This is how we use the donations:
-
-* Allow the core team to work on ReactiveUI
-* Thank contributors if they invested a large amount of time in contributing
-* Support projects in the ecosystem
-
----
-
-## ReactiveUI and Contributors
-
-ReactiveUI is developed and maintained by the ReactiveUI community and contributors. This project is part of the broader ReactiveUI ecosystem, which provides a composable, testable framework for building reactive applications across multiple platforms.
