@@ -4,6 +4,9 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/examples/">
+    <Project Path="examples/DeliveryPopup/DeliveryPopup.csproj" />
+  </Folder>
   <Folder Name="/SolutionConfig/">
     <File Path="../.editorconfig" />
     <File Path="../README.md" />

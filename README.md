@@ -22,6 +22,8 @@ Install the package into your MAUI project:
 
 ## Recommended Setup
 
+The [delivery popup example](src/examples/README.md) shows how to bind a popup, await navigation and observe its opening and closing events.
+
 To initialize the plugin, you must register it within your `MauiProgram.cs` file. This ensures that the Mopups services are configured and the ReactiveUI interactions are wired up correctly.
 
 ```csharp
